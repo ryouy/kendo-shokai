@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Script from "next/script";
-import { ArrowRight, CalendarDays, MapPin, Trophy, Users } from "lucide-react";
+import { ArrowRight, CalendarDays, Instagram, MapPin, Trophy, Users } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { MobileNav } from "@/components/MobileNav";
 import { Reveal } from "@/components/Reveal";
-import { ContactForm } from "@/components/ContactForm";
+import { JoinSteps } from "@/components/JoinSteps";
+import { FaqAccordion } from "@/components/FaqAccordion";
 import { YouTubeGallery } from "@/components/YouTubeGallery";
 import { ActivityNotice } from "@/components/ActivityNotice";
 import { ACTIVITY_JA } from "@/lib/activity";
@@ -38,10 +39,10 @@ export default function Home() {
 
       {/* Header (Kendo/Bushido) */}
       <header className="mode-kendo sticky top-0 z-40 border-b border-border/70 bg-background/70 backdrop-blur">
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-3">
-          <div className="flex min-w-0 items-baseline gap-3">
+        <div className="mx-auto flex w-full max-w-6xl flex-nowrap items-center justify-between gap-3 px-4 py-3">
+          <div className="flex min-w-0 items-center gap-3">
             <a
-              href="#"
+              href="/"
               className="min-w-0 max-w-[52vw] truncate font-display text-base font-semibold"
             >
               会津大学剣道部
@@ -50,7 +51,7 @@ export default function Home() {
               Aizu University Kendo Club
             </span>
           </div>
-          <nav className="hidden items-center gap-4 text-sm text-muted md:flex">
+          <nav className="hidden items-center gap-4 text-sm text-muted lg:flex lg:whitespace-nowrap">
             <a className="hover:text-foreground" href="#youtube">
               動画
             </a>
@@ -67,8 +68,8 @@ export default function Home() {
               SNS & Contact
             </a>
           </nav>
-          <div className="flex items-center gap-3">
-            <a href="#contact" className="hidden md:inline-flex aukc-btn aukc-btn-primary">
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+            <a href="#contact" className="hidden lg:inline-flex aukc-btn aukc-btn-primary">
               見学・入部案内
               <ArrowRight className="ml-2 size-4" aria-hidden="true" />
             </a>
@@ -95,15 +96,16 @@ export default function Home() {
             <span className="grid size-9 place-items-center rounded-2xl bg-accent/10 text-accent">
               ゆ
             </span>
-            <a href="#" className="min-w-0 truncate font-display text-base font-bold">
+            <a href="/" className="min-w-0 truncate font-display text-base font-bold">
               ゆるゆる剣道部（会津大学）
             </a>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-2">
             <a href="#chill-visit" className="aukc-btn aukc-btn-soft">
               ふらっと見学
               <ArrowRight className="ml-1 size-4" aria-hidden="true" />
             </a>
+            <LanguageToggle />
             <ThemeToggle />
           </div>
         </div>
@@ -114,7 +116,7 @@ export default function Home() {
         {/* Kendo/Bushido composition */}
         {/* ========================= */}
         <div className="mode-kendo">
-        {/* Hero (Video background on desktop, static poster on mobile) */}
+        {/* Hero */}
         <section className="relative isolate overflow-hidden border-b border-border/70">
           <div className="absolute inset-0 -z-10">
             {/* Base poster image (always visible; also acts as fallback if video fails) */}
@@ -126,20 +128,6 @@ export default function Home() {
               priority
               className="h-full w-full object-cover"
             />
-
-            {/* Desktop video overlay (relative path => works with GitHub Pages basePath) */}
-            <video
-              className="hidden h-full w-full object-cover md:block"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              poster="hero/hero-mobile.svg"
-              aria-hidden="true"
-            >
-              <source src="hero/keiko.mp4" type="video/mp4" />
-            </video>
 
             {/* Dark overlay for legibility */}
             <div className="absolute inset-0 bg-black/55" />
@@ -157,7 +145,7 @@ export default function Home() {
                   初心者歓迎・マイペースOK
                 </span>
               </div>
-              <h1 className="mt-5 font-display text-4xl font-semibold tracking-tight text-white sm:text-6xl">
+              <h1 className="mt-5 break-words text-balance font-display text-4xl font-semibold tracking-tight text-white sm:text-6xl">
                 会津大学剣道部
               </h1>
               <p className="mt-2 text-sm text-white/75 sm:text-base">
@@ -168,30 +156,41 @@ export default function Home() {
                 はじめてでも大丈夫。自分のペースで剣道を学べます。
               </p>
 
-              <div className="mt-8 flex flex-wrap items-center gap-3">
+              <div className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:justify-start">
                 <a
                   href="#contact"
-                  className="aukc-btn aukc-btn-primary"
+                  className="w-full aukc-btn aukc-btn-primary sm:w-auto"
                 >
                   入部案内 / 見学申し込み
                   <ArrowRight className="ml-2 size-4" aria-hidden="true" />
                 </a>
                 <a
                   href="#youtube"
-                  className="aukc-btn aukc-btn-soft"
+                  className="w-full aukc-btn aukc-btn-soft sm:w-auto"
                 >
                   動画を見る（稽古・大会）
                   <ArrowRight className="ml-2 size-4" aria-hidden="true" />
                 </a>
-                <a
-                  href="https://x.com/kendo_uoa"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="aukc-btn aukc-btn-ghost"
-                >
-                  X（旧Twitter）
-                  <ArrowRight className="ml-2 size-4" aria-hidden="true" />
-                </a>
+                <div className="flex items-center justify-center gap-2 sm:justify-start">
+                  <a
+                    href="https://x.com/kendo_uoa"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="aukc-btn aukc-btn-ghost"
+                  >
+                    X（旧Twitter）
+                    <ArrowRight className="ml-2 size-4" aria-hidden="true" />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/uoa_kendo"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram（@uoa_kendo）"
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/15 bg-black/25 text-white/90 shadow-sm shadow-black/30 backdrop-blur transition hover:-translate-y-0.5 hover:bg-black/35 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-white/35"
+                  >
+                    <Instagram className="size-5" aria-hidden="true" />
+                  </a>
+                </div>
               </div>
 
               <div className="mt-10 max-w-3xl">
@@ -205,7 +204,7 @@ export default function Home() {
               </div>
 
               <p className="mt-6 text-xs text-white/60">
-                ※モバイルは軽量化のため静止画表示になります。PC/タブレットは動画ループ再生。
+                ※軽量化のため、背景は静止画で表示しています。
               </p>
             </Reveal>
           </div>
@@ -368,6 +367,12 @@ export default function Home() {
           </div>
           </section>
 
+          {/* Steps */}
+          <JoinSteps variant="kendo" lang="ja" />
+
+          {/* FAQ */}
+          <FaqAccordion variant="kendo" lang="ja" />
+
           {/* Members */}
           <section id="members" className="py-14">
           <Reveal>
@@ -408,7 +413,7 @@ export default function Home() {
               SNS & Contact
             </h2>
             <p className="mt-2 max-w-prose text-muted">
-              最新情報は X（旧Twitter）で発信中。見学申し込み・質問もお気軽に。
+              最新情報はSNSで発信中。見学や質問も、お気軽にどうぞ。
             </p>
           </Reveal>
 
@@ -416,25 +421,42 @@ export default function Home() {
             <Reveal delay={0.05}>
               <div className="rounded-2xl border border-border bg-card p-5 shadow-sm shadow-shadow/10">
                 <div className="flex items-center justify-between gap-3">
-                  <p className="font-display text-lg font-semibold">X（旧Twitter）</p>
-                  <div className="flex flex-wrap items-center gap-2">
-                    <a
-                      href="https://x.com/kendo_uoa"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                        className="inline-flex h-10 items-center justify-center rounded-xl border border-border bg-card px-3 text-sm font-semibold text-foreground shadow-sm shadow-shadow/10 transition hover:-translate-y-0.5 hover:bg-background hover:shadow-md focus:outline-none focus:ring-2 focus:ring-accent/35"
-                    >
-                      @kendo_uoa を開く
-                      <ArrowRight className="ml-2 size-4" aria-hidden="true" />
-                    </a>
-                    <a
-                      href="mailto:kendo_uoa@example.com?subject=%E3%80%90%E4%BC%9A%E6%B4%A5%E5%A4%A7%E5%AD%A6%E5%89%A3%E9%81%93%E9%83%A8%E3%80%91%E8%A6%8B%E5%AD%A6%E7%94%B3%E8%BE%BC%E3%81%BF"
-                        className="inline-flex h-10 items-center justify-center rounded-xl border border-white/15 bg-zinc-900/70 px-3 text-sm font-semibold text-zinc-100 shadow-sm shadow-black/30 backdrop-blur transition hover:-translate-y-0.5 hover:bg-zinc-900/85 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-white/35"
-                    >
-                      部活見学申し込み
-                      <ArrowRight className="ml-2 size-4" aria-hidden="true" />
-                    </a>
+                  <p className="font-display text-lg font-semibold">SNS</p>
+                  <div className="flex flex-col items-end gap-2">
+                    <p className="text-xs text-muted">最短ルート：SNSのDM → ふらっと見学</p>
+                    <div className="grid grid-cols-2 gap-2">
+                      <a
+                        href="https://x.com/kendo_uoa"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex h-10 w-full items-center justify-center rounded-xl border border-border bg-card px-3 text-sm font-semibold text-foreground shadow-sm shadow-shadow/10 transition hover:-translate-y-0.5 hover:bg-background hover:shadow-md focus:outline-none focus:ring-2 focus:ring-accent/35"
+                      >
+                        X
+                        <ArrowRight className="ml-2 size-4" aria-hidden="true" />
+                      </a>
+                      <a
+                        href="https://www.instagram.com/uoa_kendo"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-xl border border-border bg-card px-3 text-sm font-semibold text-foreground shadow-sm shadow-shadow/10 transition hover:-translate-y-0.5 hover:bg-background hover:shadow-md focus:outline-none focus:ring-2 focus:ring-accent/35"
+                      >
+                        <Instagram className="size-4" aria-hidden="true" />
+                        Instagram
+                      </a>
+                    </div>
                   </div>
+                </div>
+
+                <div className="mt-4 rounded-2xl border border-border bg-background p-4 text-sm text-muted">
+                  <p className="font-semibold text-foreground">初心者の方へ</p>
+                  <p className="mt-2 leading-7">
+                    竹刀や防具、胴着は部で用意しています。初心者の方でもすぐに参加できます！
+                    特にSNSで連絡しなくても、ふらっと見学に来てくれて大丈夫です。
+                    ただ、たまにお休みの日もあるので、事前にひとこと連絡をもらえると嬉しいです。
+                  </p>
+                  <p className="mt-3 text-xs">
+                    見学の相談や質問は、X/InstagramのDMからどうぞ。
+                  </p>
                 </div>
 
                 <div className="mt-4 overflow-hidden rounded-2xl border border-border bg-background">
@@ -461,7 +483,33 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={0.1}>
-              <ContactForm lang="ja" />
+              <div className="rounded-2xl border border-border bg-card p-5 shadow-sm shadow-shadow/10">
+                <p className="font-display text-lg font-semibold tracking-tight">連絡方法</p>
+                <p className="mt-2 text-sm leading-7 text-muted">
+                  メールでの問い合わせは受け付けていません。見学の相談や質問は、SNSのDMから気軽にご連絡ください。
+                </p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <a
+                    href="https://x.com/kendo_uoa"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex h-11 items-center justify-center rounded-xl border border-border bg-background px-3 text-sm font-semibold text-foreground shadow-sm shadow-shadow/10 transition hover:-translate-y-0.5 hover:bg-card hover:shadow-md focus:outline-none focus:ring-2 focus:ring-accent/35"
+                  >
+                    Xで連絡
+                    <ArrowRight className="ml-2 size-4" aria-hidden="true" />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/uoa_kendo"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-border bg-background px-3 text-sm font-semibold text-foreground shadow-sm shadow-shadow/10 transition hover:-translate-y-0.5 hover:bg-card hover:shadow-md focus:outline-none focus:ring-2 focus:ring-accent/35"
+                  >
+                    <Instagram className="size-4" aria-hidden="true" />
+                    Instagramで連絡
+                    <ArrowRight className="ml-1 size-4" aria-hidden="true" />
+                  </a>
+                </div>
+              </div>
             </Reveal>
           </div>
           </section>
@@ -551,19 +599,32 @@ export default function Home() {
             </Reveal>
           </section>
 
+          {/* Steps */}
+          <section className="mx-auto w-full max-w-6xl px-4">
+            <JoinSteps variant="chill" lang="ja" />
+          </section>
+
+          {/* FAQ + Video (side-by-side on desktop) */}
           <section className="mx-auto w-full max-w-6xl px-4 py-10">
-            <Reveal>
-              <h2 className="font-display text-2xl font-extrabold tracking-tight">
-                のんびり動画コーナー
-              </h2>
-              <p className="mt-2 max-w-prose text-muted">
-                見るだけでも雰囲気がわかります（サムネを押すと切り替わります）。
-              </p>
-            </Reveal>
-            <div className="mt-6">
-              <Reveal delay={0.05}>
-                <YouTubeGallery lang="ja" />
-              </Reveal>
+            <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
+              <div>
+                <Reveal>
+                  <h2 className="font-display text-2xl font-extrabold tracking-tight">
+                    のんびり動画コーナー
+                  </h2>
+                  <p className="mt-2 max-w-prose text-muted">
+                    見るだけでも雰囲気がわかります（サムネを押すと切り替わります）。
+                  </p>
+                </Reveal>
+                <div className="mt-6">
+                  <Reveal delay={0.05}>
+                    <YouTubeGallery lang="ja" />
+                  </Reveal>
+                </div>
+              </div>
+              <div>
+                <FaqAccordion variant="chill" lang="ja" compact />
+              </div>
             </div>
           </section>
 
@@ -577,18 +638,67 @@ export default function Home() {
                   ガチガチの体育会系じゃなく、楽しく続ける感じでやってます。気軽にどうぞ。
                 </p>
                 <div className="mt-6 grid gap-4 lg:grid-cols-2">
-                  <ContactForm lang="ja" />
+                  <div id="chill-contact" className="aukc-card p-6">
+                    <p className="font-display text-lg font-extrabold">SNS</p>
+                    <p className="mt-2 text-sm leading-7 text-muted">
+                      見学の相談や質問は、X/InstagramのDMでOKです。ふらっと来ても大丈夫ですが、
+                      たまにお休みの日もあるので事前にひとことあると嬉しいです。
+                    </p>
+                    <p className="mt-4 text-xs font-bold text-foreground">
+                      最短ルート：SNSのDM → 見学
+                    </p>
+                    <div className="mt-2 grid grid-cols-2 gap-2">
+                      <a
+                        className="inline-flex h-11 items-center justify-center rounded-xl border border-border bg-background px-3 text-sm font-semibold text-foreground shadow-sm shadow-shadow/10 transition hover:-translate-y-0.5 hover:bg-card hover:shadow-md focus:outline-none focus:ring-2 focus:ring-accent/35"
+                        href="https://x.com/kendo_uoa"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        X
+                        <ArrowRight className="ml-2 size-4" aria-hidden="true" />
+                      </a>
+                      <a
+                        className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-border bg-background px-3 text-sm font-semibold text-foreground shadow-sm shadow-shadow/10 transition hover:-translate-y-0.5 hover:bg-card hover:shadow-md focus:outline-none focus:ring-2 focus:ring-accent/35"
+                        href="https://www.instagram.com/uoa_kendo"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Instagram className="size-4" aria-hidden="true" />
+                        Instagram
+                      </a>
+                    </div>
+
+                    <div className="mt-4 overflow-hidden rounded-2xl border border-border bg-background">
+                      <div className="p-3 text-xs text-muted">
+                        埋め込みがブロックされる環境では、上のボタンからご覧ください。
+                      </div>
+                      <div className="h-[420px] overflow-auto px-3 pb-3 sm:h-[540px]">
+                        <a
+                          className="twitter-timeline"
+                          data-height="520"
+                          data-dnt="true"
+                          href="https://x.com/kendo_uoa"
+                        >
+                          Tweets by kendo_uoa
+                        </a>
+                      </div>
+                    </div>
+
+                    <Script
+                      src="https://platform.twitter.com/widgets.js"
+                      strategy="lazyOnload"
+                    />
+                  </div>
                   <div className="aukc-card p-6">
                     <p className="font-display text-lg font-extrabold">最短ルート</p>
                     <ol className="mt-3 space-y-2 text-sm text-muted">
-                      <li>1) 上のフォーム or Xから連絡</li>
+                      <li>1) X / InstagramのDMで連絡</li>
                       <li>2) 月/木の19:00ごろに体育館2Fへ</li>
                       <li>3) 見学して、気に入ったらそのままOK</li>
                     </ol>
-                    <a className="mt-5 inline-flex aukc-btn aukc-btn-soft" href="https://x.com/kendo_uoa" target="_blank" rel="noopener noreferrer">
-                      Xを開く
-                      <ArrowRight className="ml-1 size-4" aria-hidden="true" />
-                    </a>
+                    <p className="mt-4 text-xs text-muted">
+                      連絡なしで見学もOKですが、たまにお休みの日もあるので事前にひとことあると嬉しいです。
+                    </p>
                   </div>
                 </div>
               </div>
@@ -597,11 +707,7 @@ export default function Home() {
 
           <footer className="border-t border-border/70 bg-background">
             <div className="mx-auto w-full max-w-6xl px-4 py-10">
-              <div className="aukc-card p-5">
-                <p className="text-sm font-bold text-foreground">今週の活動</p>
-                <p className="mt-1 text-sm text-muted">{ACTIVITY_JA.combined}</p>
-              </div>
-              <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <p className="text-sm text-muted">
                   © {new Date().getFullYear()} Aizu University Kendo Club
                 </p>

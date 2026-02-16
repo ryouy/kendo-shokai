@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useId, useMemo, useState } from "react";
+import { useId, useMemo, useSyncExternalStore } from "react";
 import { Coffee, MoonStar, Sword } from "lucide-react";
 import {
-  applyThemeToDocument,
-  getStoredTheme,
-  setStoredTheme,
+  getThemeSnapshot,
+  setTheme,
+  subscribeTheme,
   type ThemeMode,
 } from "@/lib/theme";
 
@@ -15,13 +15,7 @@ function nextTheme(current: ThemeMode): ThemeMode {
 
 export function ThemeToggle() {
   const reactId = useId();
-  const [theme, setTheme] = useState<ThemeMode>("kendo");
-
-  useEffect(() => {
-    const t = getStoredTheme();
-    setTheme(t);
-    applyThemeToDocument(t);
-  }, []);
+  const theme = useSyncExternalStore<ThemeMode>(subscribeTheme, getThemeSnapshot, () => "kendo");
 
   const label = useMemo(
     () =>
@@ -40,11 +34,9 @@ export function ThemeToggle() {
         aria-pressed={theme === "kendo"}
         onClick={() => {
           const t = nextTheme(theme);
-          setTheme(t);
-          setStoredTheme(t);
-          applyThemeToDocument(t);
+          setTheme(t, { preserveScroll: true });
         }}
-        className="group inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-2 text-sm font-medium text-foreground shadow-sm shadow-shadow/10 transition hover:-translate-y-0.5 hover:shadow-md hover:shadow-shadow/15 focus:outline-none focus:ring-2 focus:ring-accent/40"
+        className="group inline-flex h-11 items-center gap-2 rounded-full border border-border bg-card px-2 text-sm font-medium text-foreground shadow-sm shadow-shadow/10 transition hover:-translate-y-0.5 hover:shadow-md hover:shadow-shadow/15 focus:outline-none focus:ring-2 focus:ring-accent/40 sm:px-3"
       >
         <span className="inline-flex items-center gap-2">
           <span className="grid size-7 place-items-center rounded-full bg-background">

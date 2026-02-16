@@ -27,14 +27,14 @@ export function MobileNav({
   }, [open]);
 
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       <button
         type="button"
         aria-label={label}
         aria-expanded={open}
         aria-controls={`${id}-panel`}
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex h-10 items-center justify-center rounded-xl border border-white/15 bg-zinc-900/70 px-3 text-sm font-semibold text-zinc-100 shadow-sm shadow-black/30 backdrop-blur transition hover:bg-zinc-900/85 focus:outline-none focus:ring-2 focus:ring-white/35"
+        className="inline-flex h-11 items-center justify-center rounded-xl border border-white/15 bg-zinc-900/70 px-3 text-sm font-semibold text-zinc-100 shadow-sm shadow-black/30 backdrop-blur transition hover:bg-zinc-900/85 focus:outline-none focus:ring-2 focus:ring-white/35"
       >
         {open ? <X className="size-4" aria-hidden="true" /> : <Menu className="size-4" aria-hidden="true" />}
         <span className="ml-2">Menu</span>
