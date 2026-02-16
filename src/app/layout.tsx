@@ -75,6 +75,20 @@ export default function RootLayout({
 })();
           `.trim()}
         </Script>
+        <Script id="tone-init" strategy="beforeInteractive">
+          {`
+(() => {
+  try {
+    const key = "aukc-tone";
+    const stored = localStorage.getItem(key);
+    const tone = stored === "poyo" || stored === "normal" ? stored : "normal";
+    document.documentElement.dataset.tone = tone;
+  } catch (_) {
+    document.documentElement.dataset.tone = "normal";
+  }
+})();
+          `.trim()}
+        </Script>
       </head>
       <body className={`${inter.variable} ${yuji.variable} ${rounded.variable} antialiased`}>
         {children}

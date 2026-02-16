@@ -2,7 +2,7 @@
 
 ここはね……
 
-**ふわふわ浮遊してた生命体たちが、なぜか竹刀を持ち始めた[森](https://ryouy.github.io/kendo-shokai)**ぽよ。
+**ふわふわ浮遊してた生命体たちが、なぜか竹刀を持ち始めた**[森]**(https://ryouy.github.io/kendo-shokai)**ぽよ。
 
 普段は
 ぽよ〜……
