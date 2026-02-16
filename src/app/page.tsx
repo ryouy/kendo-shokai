@@ -39,9 +39,7 @@ export default function Home() {
             <div className="aukc-card overflow-hidden p-6 sm:p-10">
               <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
                 <div className="max-w-2xl">
-                  <p className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/60 px-3 py-1 text-xs font-bold text-muted backdrop-blur">
-                    のんびり運動 / 友だち作り / 初心者歓迎
-                  </p>
+                
                   <h1 className="mt-4 font-display text-3xl font-extrabold tracking-tight sm:text-5xl">
                     ゆるっと剣道、はじめよ。
                   </h1>
@@ -50,6 +48,13 @@ export default function Home() {
                     まずは見学で雰囲気だけ感じに来てください。
                   </p>
                   <div className="mt-5 flex flex-wrap gap-2">
+                  <span className="aukc-pill border border-border/70 bg-background/60 px-3 py-1 text-xs font-semibold text-foreground backdrop-blur">
+                  のんびり運動
+                    </span>
+                    <span className="aukc-pill border border-border/70 bg-background/60 px-3 py-1 text-xs font-semibold text-foreground backdrop-blur">
+                    友だち作り
+                    </span>
+                   
                     <span className="aukc-pill border border-border/70 bg-background/60 px-3 py-1 text-xs font-semibold text-foreground backdrop-blur">
                       マイペースOK
                     </span>
@@ -141,7 +146,7 @@ export default function Home() {
                 のんびり動画コーナー
               </h2>
               <p className="mt-2 max-w-prose text-muted">
-                見るだけでも雰囲気がわかります（サムネを押すと切り替わります）。
+                見るだけでも雰囲気がわかります
               </p>
             </Reveal>
             <div className="mt-6">

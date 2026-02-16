@@ -19,21 +19,22 @@ type YouTubeCopy = {
 const COPY_JA: YouTubeCopy = {
   description: "稽古の空気感・間合い・打突の迫力を、映像で体感してください。",
   thumbAltSuffix: "のサムネイル",
-  switchHint: "クリックで埋め込みを切り替え",
-  footerHint: "※ YouTube ID は `src/components/YouTubeGallery.tsx` で差し替えできます。",
+  switchHint: "",
+  footerHint: "",
 };
 
 const COPY_EN: YouTubeCopy = {
   description: "Feel the intensity, maai (distance), and the atmosphere through video.",
   thumbAltSuffix: "thumbnail",
-  switchHint: "Click to switch the embed",
+  switchHint: "",
   footerHint: "*You can change YouTube IDs in `src/components/YouTubeGallery.tsx`.",
 };
 
 const DEFAULT_VIDEOS: VideoItem[] = [
-  { id: "dQw4w9WgXcQ", title: "稽古ダイジェスト", label: "稽古ダイジェスト" },
-  { id: "dQw4w9WgXcQ", title: "大会映像", label: "大会映像" },
-  { id: "dQw4w9WgXcQ", title: "初心者向け紹介動画", label: "初心者向け紹介動画" },
+  // id には YouTube の「動画ID」（watch?v= の後ろ）を入れてください
+  { id: "qYfj-Hn77BM", title: "稽古ダイジェスト", label: "稽古ダイジェスト" },
+  { id: "yr9A7JnoYiY", title: "地稽古映像", label: "地稽古映像" },
+  { id: "C-RhVubGblA", title: "初心者向け紹介動画（１本集）", label: "初心者向け紹介動画（１本集）" },
 ];
 
 export function YouTubeGallery({
