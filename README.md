@@ -1,6 +1,6 @@
 # 🫧🌸 会津大学剣道部 〜ぽよぽよ生命体の道場〜 🌸🫧
 
-[ここ]**(https://ryouy.github.io/kendo-shokai)はね……
+[ここ](https://ryouy.github.io/kendo-shokai)はね……
 
 **ふわふわ浮遊してた生命体たちが、なぜか竹刀を持ち始めた森**ぽよ。
 
