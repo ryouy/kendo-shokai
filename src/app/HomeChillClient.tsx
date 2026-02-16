@@ -18,74 +18,72 @@ function copy(lang: Lang, tone: Tone) {
   const isPoyo = tone === "poyo";
   if (lang === "en") {
     return {
-      headerTitle: isPoyo ? "Aizu Kendo Poyo Dojo" : "Aizu Univ. Kendo Club",
-      headerCta: isPoyo ? "peek…poyo" : "Drop-in visit",
-      heroTitle: isPoyo ? "We bonk with softness. Poyo." : "Chill kendo, maybe?",
+      headerTitle: isPoyo ? "Aizu Poyo Dojo (mystery beings)" : "Aizu Univ. Kendo Club",
+      headerCta: isPoyo ? "tiny peek… (poyo)" : "Drop-in visit",
+      heroTitle: isPoyo ? "A fluffy creature’s gentle bonk time." : "Chill kendo, maybe?",
       heroLead: isPoyo
-        ? "Floaty beings… somehow holding shinai. Come say hi. Poyo."
+        ? "We’re the floaty, slightly mysterious beings of the forest… and somehow we started holding shinai. If your heart goes “huh?”, come say hi."
         : "If you just want to move your body a little, that’s totally fine. No uniform needed for a first visit — come say hi.",
       pills: isPoyo
-        ? ["poyo pace", "beginners poyo", "drop-in poyo"]
+        ? ["floaty pace ok", "beginners welcome", "drop-in friendly"]
         : ["go at your pace", "beginners welcome", "drop-in ok"],
-      primaryCta: isPoyo ? "visit…poyo" : "Visit (welcome)",
-      xCta: isPoyo ? "tap X…poyo" : "Updates on X",
-      igCta: isPoyo ? "tap Insta…poyo" : "Updates on Instagram",
-      activityTitle: isPoyo ? "When / Where (poyo)" : "Schedule & location",
-      videoTitle: isPoyo ? "Poyo video corner" : "Cozy video corner",
-      videoLead: isPoyo ? "Just watch. Poyo." : "Tap a thumbnail to switch the embed.",
-      faqTitle: isPoyo ? "Poyo Q&A" : "FAQ",
-      faqLead: isPoyo ? "Tiny worries, tiny answers. Poyo." : "Frequently asked questions for first-time visitors.",
-      visitTitle: isPoyo ? "Drop-in welcome (poyo)" : "Drop-in visits welcome",
+      primaryCta: isPoyo ? "drop in… softly" : "Visit (welcome)",
+      xCta: isPoyo ? "poke X (tiny updates)" : "Updates on X",
+      igCta: isPoyo ? "poke Instagram (tiny photos)" : "Updates on Instagram",
+      activityTitle: isPoyo ? "When / where we float" : "Schedule & location",
+      videoTitle: isPoyo ? "Fluffy video nook" : "Cozy video corner",
+      videoLead: isPoyo ? "Watching is totally fine. (very poyo)" : "Tap a thumbnail to switch the embed.",
+      faqTitle: isPoyo ? "Little questions (poyo)" : "FAQ",
+      faqLead: isPoyo ? "Tiny worries, tiny answers — gently." : "Frequently asked questions for first-time visitors.",
+      visitTitle: isPoyo ? "Drop-in welcome (very gently)" : "Drop-in visits welcome",
       visitLead: isPoyo
-        ? "Not too strict. Not too lazy. Just poyo-friendly."
+        ? "Not too strict, not too hard. Just a warm place to float in and try."
         : "We keep it friendly and low-pressure. Come take a look first.",
-      routeTitle: isPoyo ? "Poyo route" : "Quick route",
-      routeSteps: isPoyo
-        ? ["1) feel poyo", "2) DM (optional)", "3) come around 19:00 (Mon/Thu)"]
-        : ["1) DM us on X / Instagram (optional)", "2) Come around 19:00 (Mon/Thu) to Gym 2F", "3) Watch practice — if you like it, you’re in"],
+      routeTitle: isPoyo ? "The tiniest route" : "Quick route",
+      routeSteps: ["1) DM us on X / Instagram (optional)", "2) Come around 19:00 (Mon/Thu) to Gym 2F", "3) Watch practice — if you like it, you’re in"],
       routeNote: isPoyo
-        ? "No message is fine, but a tiny heads-up makes us extra poyo-happy."
+        ? "No message is fine. But if you send a tiny heads-up, we’ll be extra happy and ready to wave."
         : "Dropping in without messaging is fine, but since we sometimes take days off, a quick heads-up helps a lot.",
-      snsTitle: isPoyo ? "SNS (DM) poyo" : "SNS (DM)",
-      xDm: isPoyo ? "DM on X (poyo)" : "Message on X",
-      igDm: isPoyo ? "DM on Instagram (poyo)" : "Message on Instagram",
+      snsTitle: isPoyo ? "DM us (softly)" : "SNS (DM)",
+      xDm: isPoyo ? "DM on X (hello!)" : "Message on X",
+      igDm: isPoyo ? "DM on Instagram (hello!)" : "Message on Instagram",
       copyrightLabel: "Aizu University Kendo Club",
       univLabel: "University of Aizu (Official)",
     };
   }
 
   return {
-    headerTitle: isPoyo ? "会津大学剣道部 〜ぽよ道場〜" : "会津大学剣道部",
-    headerCta: isPoyo ? "ひょこっと見学" : "ふらっと見学",
-    heroTitle: isPoyo ? "ぽよっと剣道、はじめよ。" : "ゆるっと剣道、はじめよ。",
+    headerTitle: isPoyo ? "会津大学剣道部 〜森のぽよ道場〜" : "会津大学剣道部",
+    headerCta: isPoyo ? "ひょこっ…と見学" : "ふらっと見学",
+    heroTitle: isPoyo ? "ぽよ…っと剣道、はじめよ。" : "ゆるっと剣道、はじめよ。",
     heroLead: isPoyo
-      ? "ふわふわ浮遊してた生命体たちが、なぜか竹刀を持ち始めた森ぽよ。気になったら、ひょこっと来てぽよ。"
+      ? "ここは、ふわふわ浮遊してた不思議生物たちが、なぜか竹刀を持ち始めた森ぽよ。気になったら、ひょこっと来てぽよ。"
       : "「運動不足だからちょっと動きたい」でもOK。道着がなくてもOK。まずは見学で雰囲気だけ感じに来てください。",
     pills: isPoyo
-      ? ["ぽよペースOK", "初心者ぽよ歓迎", "途中参加ぽよOK"]
+      ? ["ぽよペースOK", "初心者ぽよ歓迎", "途中参加ぽよOK", "きゅんと来たらOK"]
       : ["のんびり運動", "友だち作り", "マイペースOK", "初心者OK", "途中参加OK"],
-    primaryCta: isPoyo ? "見学ぽよ（受付中）" : "見学する（受付中）",
-    xCta: isPoyo ? "Xをちょんちょん" : "Xでゆるっと近況",
-    igCta: isPoyo ? "インスタをちょんちょん" : "インスタでゆるっとも",
-    activityTitle: isPoyo ? "活動日時・場所（ぽよ）" : "活動日時・場所",
-    videoTitle: isPoyo ? "ぽよ動画コーナー" : "のんびり動画コーナー",
-    videoLead: isPoyo ? "見るだけでもぽよっと雰囲気わかる。" : "見るだけでも雰囲気がわかります",
-    faqTitle: isPoyo ? "ぽよQ&A" : "よくある質問",
-    faqLead: isPoyo ? "ちいさな不安を、ちいさく解決ぽよ。" : "初心者の方も安心して来られるように、よく聞かれることをまとめました。",
+    primaryCta: isPoyo ? "見学ぽよ（ひょこ受付中）" : "見学する（受付中）",
+    xCta: isPoyo ? "Xをちょん…（近況ぽよ）" : "Xでゆるっと近況",
+    igCta: isPoyo ? "インスタをちょん…（写真ぽよ）" : "インスタでゆるっとも",
+    activityTitle: isPoyo ? "活動日時・場所（ぽよ案内）" : "活動日時・場所",
+    videoTitle: isPoyo ? "ぽよ動画のすみっこ" : "のんびり動画コーナー",
+    videoLead: isPoyo ? "見るだけでも、ぽよっと空気わかるぽよ。" : "見るだけでも雰囲気がわかります",
+    faqTitle: isPoyo ? "ぽよQ&A（やさしめ）" : "よくある質問",
+    faqLead: isPoyo ? "ちいさな不安を、ちいさく解決ぽよ。ふわっとどうぞ。" : "初心者の方も安心して来られるように、よく聞かれることをまとめました。",
     visitTitle: isPoyo ? "ふらっと見学、歓迎ぽよ" : "ふらっと見学、歓迎です",
     visitLead: isPoyo
-      ? "ガチガチじゃないけど、だらだらでもないぽよ。気軽にどうぞ。"
+      ? "ガチガチじゃないけど、だらだらでもないぽよ。ふわっと、ひょこっと、どうぞ。"
       : "ガチガチの体育会系じゃなく、楽しく続ける感じでやってます。気軽にどうぞ。",
-    routeTitle: isPoyo ? "最短ぽよルート" : "最短ルート",
+    routeTitle: isPoyo ? "最短ぽよルート（かるい）" : "最短ルート",
     routeSteps: isPoyo
       ? ["1) ぽよ…？となる", "2) SNSをちょんちょん（任意）", "3) 月・木 19:00ごろにひょこっと体育館2Fへ"]
       : ["1) X / Instagram のDMで連絡（任意）", "2) 月・木 19:00ごろに体育館2Fへ", "3) 見学して、気に入ったらそのままOK"],
     routeNote: isPoyo
-      ? "連絡なしでもOKぽよ。でもたまにお休みもあるから、ひとことあると嬉しぽよ。"
+      ? "連絡なしでもOKぽよ。けど、たまにお休みの日もあるから、ひとことあると…にこにこぽよ。"
       : "連絡なしでもOKですが、たまにお休みの日もあるので事前にひとことあると嬉しいです。",
     snsTitle: isPoyo ? "SNS（DMはこちら）ぽよ" : "SNS（DMはこちら）",
-    xDm: isPoyo ? "XでDMぽよ" : "Xで連絡（DM）",
-    igDm: isPoyo ? "インスタでDMぽよ" : "Instagramで連絡（DM）",
+    xDm: isPoyo ? "Xでひとことぽよ" : "Xで連絡（DM）",
+    igDm: isPoyo ? "インスタでひとことぽよ" : "Instagramで連絡（DM）",
     copyrightLabel: "Aizu University Kendo Club",
     univLabel: "会津大学 公式サイト",
   };

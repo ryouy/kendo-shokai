@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, M_PLUS_Rounded_1c, Yuji_Syuku } from "next/font/google";
+import { M_PLUS_Rounded_1c } from "next/font/google";
 import "./globals.css";
 
 import Script from "next/script";
@@ -7,19 +7,6 @@ import Script from "next/script";
 const isGitHubPages =
   process.env.GITHUB_PAGES === "true" || process.env.GITHUB_ACTIONS === "true";
 const basePath = isGitHubPages ? "/kendo-shokai" : "";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const yuji = Yuji_Syuku({
-  variable: "--font-yuji",
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-});
 
 const rounded = M_PLUS_Rounded_1c({
   variable: "--font-rounded",
@@ -90,7 +77,7 @@ export default function RootLayout({
           `.trim()}
         </Script>
       </head>
-      <body className={`${inter.variable} ${yuji.variable} ${rounded.variable} antialiased`}>
+      <body className={`${rounded.variable} antialiased`}>
         {children}
       </body>
     </html>

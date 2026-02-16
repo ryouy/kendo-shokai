@@ -12,7 +12,7 @@ export function ToneToggle() {
   const id = useId();
   const tone = useSyncExternalStore<Tone>(subscribeTone, getToneSnapshot, () => "normal");
 
-  const label = useMemo(() => (tone === "poyo" ? "ぽよON" : "ぽよOFF"), [tone]);
+  const label = useMemo(() => (tone === "poyo" ? "ぽよぽよ中" : "ぽよスイッチ"), [tone]);
 
   return (
     <button
