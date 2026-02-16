@@ -60,7 +60,7 @@ function copy(lang: Lang, tone: Tone) {
   return {
     headerTitle: isPoyo ? "会津大学剣道部 〜森のぽよ道場〜" : "会津大学剣道部",
     headerCta: isPoyo ? "ひょこっ…と見学" : "ふらっと見学",
-    heroTitle: isPoyo ? "ぽよ…っと剣道、はじめよ。" : "ゆるっと剣道、はじめよ。",
+    heroTitle: isPoyo ? "ぽよっと…しゃきーん！" : "ゆるっと剣道、はじめよ。",
     heroLead: isPoyo
       ? "ここは、ふわふわ浮遊してた不思議生物たちが、なぜか竹刀を持ち始めた森ぽよ。気になったら、ひょこっと来てぽよ。"
       : "「運動不足だからちょっと動きたい」でもOK。道着がなくてもOK。まずは見学で雰囲気だけ感じに来てください。",
