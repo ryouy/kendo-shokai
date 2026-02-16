@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+:root {
+  /* Base (Stylish) theme variables (as RGB triples) */
+  --bg: 250 250 252;
+  --fg: 12 18 28;
+  --card: 255 255 255;
+  --muted: 86 98 116;
+  --border: 226 232 240;
+  --accent: 37 99 235; /* blue */
+  --accent-2: 14 165 233; /* cyan */
+  --shadow: 2 6 23;
+
+  /* Font variables (set by next/font in layout) */
+  --font-body: var(--font-inter);
+  --font-display: var(--font-inter);
+
+  /* Texture overlay */
+  --texture: none;
+  --texture-opacity: 0;
+  --texture-blend: normal;
+
+  /* Tailwind v4 color tokens */
+  --background: rgb(var(--bg));
+  --foreground: rgb(var(--fg));
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: rgb(var(--card));
+  --color-muted: rgb(var(--muted));
+  --color-border: rgb(var(--border));
+  --color-accent: rgb(var(--accent));
+  --color-accent-2: rgb(var(--accent-2));
+  --color-shadow: rgb(var(--shadow));
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+}
+
+html[data-theme="kendo"] {
+  /* Kendo theme variables */
+  --bg: 6 8 12;
+  --fg: 244 245 247;
+  --card: 12 16 22;
+  --muted: 164 173 186;
+  --border: 38 46 60;
+  --accent: 239 68 68; /* vermilion-ish */
+  --accent-2: 250 204 21; /* gold */
+  --shadow: 0 0 0;
+
+  --font-body: var(--font-inter);
+  --font-display: var(--font-yuji);
+
+  --texture: url("/textures/sumi-noise.svg");
+  --texture-opacity: 0.22;
+  --texture-blend: multiply;
+
+  --background: rgb(var(--bg));
+  --foreground: rgb(var(--fg));
+}
+
+body {
+  background: rgb(var(--bg));
+  color: rgb(var(--fg));
+  font-family: var(--font-body), ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: var(--texture);
+  background-size: 420px 420px;
+  background-repeat: repeat;
+  opacity: var(--texture-opacity);
+  mix-blend-mode: var(--texture-blend);
+}
+
+/* Keep app content above the texture layer */
+main,
+header,
+footer,
+section {
+  position: relative;
+  z-index: 1;
+}

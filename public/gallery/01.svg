@@ -1,0 +1,26 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1200" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2563EB" stop-opacity="0.20"/>
+      <stop offset="0.5" stop-color="#0EA5E9" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" rx="48" fill="url(#g)"/>
+  <g opacity="0.35">
+    <path d="M150 700H1050" stroke="#0F172A" stroke-width="8" stroke-linecap="round"/>
+    <path d="M240 180c-60 60-90 128-90 206 0 120 86 220 220 220 134 0 220-100 220-220 0-78-30-146-90-206" stroke="#0F172A" stroke-width="14" stroke-linecap="round"/>
+    <path d="M360 260h280" stroke="#0F172A" stroke-width="12" stroke-linecap="round"/>
+    <path d="M330 310h340" stroke="#0F172A" stroke-width="12" stroke-linecap="round"/>
+    <path d="M300 360h400" stroke="#0F172A" stroke-width="12" stroke-linecap="round"/>
+  </g>
+  <g>
+    <path d="M720 640l260-190" stroke="#0F172A" stroke-opacity="0.35" stroke-width="10" stroke-linecap="round"/>
+    <path d="M700 660l44-32" stroke="#EF4444" stroke-opacity="0.55" stroke-width="16" stroke-linecap="round"/>
+  </g>
+  <text x="64" y="92" font-family="ui-sans-serif, system-ui" font-size="28" fill="#0F172A" fill-opacity="0.55">
+    Gallery / 01
+  </text>
+</svg>
+
+
