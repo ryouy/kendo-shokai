@@ -32,10 +32,6 @@ export const metadata: Metadata = {
   title: "会津大学剣道部 - Aizu University Kendo Club",
   description:
     "会津大学の剣道部公式紹介ページ。活動内容・部員紹介・SNSリンクなど。",
-  icons: {
-    icon: "/favi.png",
-    apple: "/favi.png",
-  },
   openGraph: {
     title: "会津大学剣道部 - Aizu University Kendo Club",
     description:
