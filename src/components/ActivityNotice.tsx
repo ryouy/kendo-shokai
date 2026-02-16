@@ -70,7 +70,10 @@ export function ActivityNotice({
             aria-hidden="true"
           />
           <p className={["leading-5 sm:leading-6", isHero ? "text-white" : ""].join(" ")}>
-            <span className="text-sm font-semibold sm:text-base">{schedule}</span>
+          <span className="whitespace-pre-line text-sm font-semibold sm:text-base">
+  {schedule}
+</span>
+
           </p>
         </div>
         <div className="flex items-start gap-2">

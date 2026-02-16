@@ -5,10 +5,12 @@ export const ACTIVITY_JA_NORMAL = {
 } as const;
 
 export const ACTIVITY_JA_POYO = {
-  schedule: "毎週 月ぽよ・木ぽよ 19:00〜21:00",
-  place: "体育館2F 武道場でぽよぽよん！",
-  combined: "毎週の 月ぽよ・木ぽよ おねむのあと、よる19:00〜21:00　体育館2F 武道場でぽよぽよん！",
-} as const;
+    schedule: "毎週の 月ぽよ・木ぽよ おねむのあと\nよる19:00〜21:00（ねむぽよよょ〜）",
+    place: "体育館2F 武道場でぽよぽよん！",
+    combined: `毎週の 月ぽよ・木ぽよ おねむのあと、
+  よる19:00〜21:00　体育館2F 武道場でぽよぽよん！`,
+  } as const;
+  
 
 export const ACTIVITY_EN_NORMAL = {
   schedule: "Every Mon & Thu 19:00–21:00",
