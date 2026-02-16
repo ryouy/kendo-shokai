@@ -24,14 +24,14 @@ export function ThemeToggle() {
   }, []);
 
   const label = useMemo(
-    () => (theme === "stylish" ? "オシャレモード" : "剣道らしさ重視モード"),
+    () => (theme === "stylish" ? "Modern モード" : "Bushido モード"),
     [theme],
   );
 
   return (
     <div className="flex items-center gap-2">
       <span className="sr-only" id={`${reactId}-label`}>
-        表示モード切替（オシャレ / 剣道）
+        表示モード切替（Modern / Bushido）
       </span>
       <button
         type="button"
@@ -55,7 +55,7 @@ export function ThemeToggle() {
           </span>
           <span className="hidden sm:inline">{label}</span>
           <span className="sm:hidden">
-            {theme === "stylish" ? "Stylish" : "Kendo"}
+            {theme === "stylish" ? "Modern" : "Bushido"}
           </span>
         </span>
         <span className="ml-1 inline-flex items-center opacity-70">

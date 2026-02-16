@@ -41,17 +41,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" suppressHydrationWarning>
-      <Script id="theme-init" strategy="beforeInteractive">
+    <html lang="ja" data-theme="kendo" suppressHydrationWarning>
+      <Script id="lang-init" strategy="beforeInteractive">
         {`
 (() => {
   try {
-    const key = "aukc-theme";
+    const key = "aukc-lang";
     const stored = localStorage.getItem(key);
-    const theme = stored === "kendo" || stored === "stylish" ? stored : "stylish";
-    document.documentElement.dataset.theme = theme;
+    const p = location.pathname;
+    const byPath =
+      p === "/en" || p.endsWith("/en") || p.includes("/en/") ? "en" : "ja";
+    const lang = stored === "en" || stored === "ja" ? stored : byPath;
+    document.documentElement.lang = lang;
+    document.documentElement.dataset.lang = lang;
   } catch (_) {
-    document.documentElement.dataset.theme = "stylish";
+    document.documentElement.lang = "ja";
+    document.documentElement.dataset.lang = "ja";
   }
 })();
         `.trim()}

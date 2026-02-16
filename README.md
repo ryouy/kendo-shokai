@@ -2,8 +2,8 @@
 
 会津大学剣道部の活動紹介・部員募集・SNS導線のための 1 ページ Web サイトです。
 
-- **オシャレモード**: クリアなUI（ライト寄り、モダン）
-- **剣道らしさ重視モード**: 黒/紺/白を基調＋滲みテクスチャ＋筆文字風フォント
+- **Modern モード**: スタイリッシュ（ライト寄り、Framer Motion）
+- **Bushido モード**: 黒/紺/白基調＋滲みテクスチャ＋筆文字フォント（武道らしい雰囲気）
 
 右上のトグルで切り替えできます（`localStorage` に保存）。
 
@@ -17,12 +17,36 @@ npm run dev
 
 ブラウザで `http://localhost:3000` を開きます。
 
+## フォルダ構成（抜粋）
+
+```
+src/
+  app/
+    layout.tsx        # meta / theme init
+    page.tsx          # 1ページ本体（Hero動画/YouTube/各セクション）
+    globals.css       # テーマ変数（Modern/Bushido）
+  components/
+    ThemeToggle.tsx   # モード切替
+    YouTubeGallery.tsx# YouTube埋め込み切替（サムネ→iframe）
+    ContactForm.tsx   # 見学/問い合わせ（mailto）
+public/
+  hero/
+    hero-mobile.svg   # モバイル静止画（ポスター）
+    keiko.mp4         # Hero背景動画（差し替え対象）
+  gallery/            # 写真ギャラリー（いまはSVGプレースホルダー）
+  textures/
+    sumi-noise.svg    # Bushido背景テクスチャ
+```
+
 ## 主な編集ポイント
 
 - **ページ本体**: `src/app/page.tsx`
+- **英語ページ**: `src/app/en/page.tsx`（`/en`）
 - **メタ情報（TITLE/DESCRIPTION）**: `src/app/layout.tsx`
 - **テーマ（色/フォント/テクスチャ）**: `src/app/globals.css`
 - **モード切替UI**: `src/components/ThemeToggle.tsx`
+- **言語切替UI**: `src/components/LanguageToggle.tsx`
+- **YouTubeセクション**: `src/components/YouTubeGallery.tsx`
 - **問い合わせフォーム**: `src/components/ContactForm.tsx`
 - **画像（SVGプレースホルダー）**:
   - `public/hero/hero-kendo.svg`
@@ -33,6 +57,24 @@ npm run dev
 
 - **ギャラリー**: `public/gallery/*.svg` を実写真に差し替え可能（`next/image` で最適化）。
 - **連絡先メール**: `src/components/ContactForm.tsx` 内の `DEFAULT_TO` を実際の宛先に変更してください。
+
+## Hero動画の差し替え方法
+
+- 動画ファイルを `public/hero/keiko.mp4` に置き換えます（推奨: 5〜8秒、H.264、音声なし or muted再生前提）。
+- `<video>` は PC/タブレットで **autoplay / muted / loop / playsInline** で再生され、モバイルは軽量化のため静止画（`public/hero/hero-mobile.svg`）になります。
+
+## YouTubeリンク（ID）の変更方法
+
+`src/components/YouTubeGallery.tsx` の `DEFAULT_VIDEOS` を、各動画の **YouTube ID** に差し替えてください。
+
+例: `https://www.youtube.com/watch?v=XXXXXXXXXXX` の `XXXXXXXXXXX` 部分が ID です。
+
+## 英語版（留学生向け）の切り替え
+
+- **日本語**: `/`
+- **English**: `/en`
+
+ヘッダーの地球アイコンのボタンで切り替えできます（選択は `localStorage` に保存され、`<html lang>` も更新します）。
 
 ## Build
 

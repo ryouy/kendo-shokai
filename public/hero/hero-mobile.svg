@@ -1,0 +1,42 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="120" x2="1080" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1220" stop-opacity="0.95"/>
+      <stop offset="0.55" stop-color="#0F172A" stop-opacity="0.90"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.96"/>
+    </linearGradient>
+    <radialGradient id="spot" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(760 260) rotate(120) scale(620 780)">
+      <stop stop-color="#FFFFFF" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="900" rx="72" fill="url(#bg)"/>
+  <rect width="1200" height="900" rx="72" fill="url(#spot)"/>
+
+  <!-- Subtle floor lines -->
+  <g opacity="0.16">
+    <path d="M90 650H1110" stroke="#E5E7EB" stroke-width="2"/>
+    <path d="M130 720H1070" stroke="#E5E7EB" stroke-width="2"/>
+    <path d="M170 790H1030" stroke="#E5E7EB" stroke-width="2"/>
+  </g>
+
+  <!-- Brush stroke accent -->
+  <path d="M120 320c220-90 520-90 760 0" stroke="#EF4444" stroke-opacity="0.55" stroke-width="16" stroke-linecap="round"/>
+  <path d="M180 360c210-70 450-70 660 0" stroke="#FACC15" stroke-opacity="0.35" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- Minimal kendo mask lines -->
+  <g opacity="0.28">
+    <path d="M600 230c-150 0-270 120-270 270 0 100 60 186 148 236" stroke="#E5E7EB" stroke-width="10" stroke-linecap="round"/>
+    <path d="M600 230c150 0 270 120 270 270 0 100-60 186-148 236" stroke="#E5E7EB" stroke-width="10" stroke-linecap="round"/>
+    <path d="M420 470h360" stroke="#E5E7EB" stroke-width="12" stroke-linecap="round"/>
+    <path d="M450 420h300" stroke="#E5E7EB" stroke-width="12" stroke-linecap="round"/>
+    <path d="M480 370h240" stroke="#E5E7EB" stroke-width="12" stroke-linecap="round"/>
+  </g>
+
+  <text x="72" y="96" font-family="ui-sans-serif, system-ui" font-size="26" fill="#E5E7EB" fill-opacity="0.55">
+    Hero Poster (Mobile)
+  </text>
+</svg>
+
+

@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Script from "next/script";
 import { ArrowRight, CalendarDays, MapPin, Trophy, Users } from "lucide-react";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { LanguageToggle } from "@/components/LanguageToggle";
 import { Reveal } from "@/components/Reveal";
 import { ContactForm } from "@/components/ContactForm";
+import { YouTubeGallery } from "@/components/YouTubeGallery";
 
 export default function Home() {
   const gallery = [
@@ -22,19 +23,6 @@ export default function Home() {
     { name: "伊藤 玲奈", role: "会計", note: "「切り返しで心も整う。」" },
   ] as const;
 
-  const seniors = [
-    {
-      name: "OB（2022卒）",
-      quote:
-        "研究で詰まった日も稽古に行くと頭がクリアになりました。勝ち負け以上に、続ける力が身につきます。",
-    },
-    {
-      name: "OG（2023卒）",
-      quote:
-        "先輩後輩の距離が近く、面倒見の良い雰囲気。遠征や交流戦で全国に仲間が増えました。",
-    },
-  ] as const;
-
   return (
     <div className="min-h-screen bg-background text-foreground">
       <a
@@ -46,15 +34,18 @@ export default function Home() {
 
       <header className="sticky top-0 z-40 border-b border-border/70 bg-background/70 backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-3">
-          <div className="flex items-baseline gap-3">
-            <a href="#" className="font-display text-base font-semibold">
+          <div className="flex min-w-0 items-baseline gap-3">
+            <a href="#" className="font-display text-base font-semibold whitespace-nowrap">
               会津大学剣道部
             </a>
-            <span className="hidden text-xs text-muted sm:inline">
+            <span className="hidden whitespace-nowrap text-xs text-muted sm:inline">
               Aizu University Kendo Club
             </span>
           </div>
           <nav className="hidden items-center gap-4 text-sm text-muted md:flex">
+            <a className="hover:text-foreground" href="#youtube">
+              動画
+            </a>
             <a className="hover:text-foreground" href="#about">
               About
             </a>
@@ -69,98 +60,119 @@ export default function Home() {
             </a>
           </nav>
           <div className="flex items-center gap-3">
-            <a
-              href="#contact"
-              className="hidden h-10 items-center justify-center rounded-xl bg-accent px-4 text-sm font-semibold text-white shadow-sm shadow-shadow/15 transition hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-accent/40 sm:inline-flex"
-            >
-              Join Us / 入部案内
-              <ArrowRight className="ml-2 size-4" aria-hidden="true" />
-            </a>
-            <ThemeToggle />
+            <LanguageToggle />
           </div>
         </div>
       </header>
 
-      <main id="main" className="mx-auto w-full max-w-6xl px-4">
-        {/* Hero */}
-        <section className="grid items-center gap-8 py-14 md:grid-cols-2 md:py-20">
-          <Reveal>
-            <div>
-              <p className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-muted">
+      <main id="main">
+        {/* Hero (Video background on desktop, static poster on mobile) */}
+        <section className="relative isolate overflow-hidden border-b border-border/70">
+          <div className="absolute inset-0 -z-10">
+            {/* Base poster image (always visible; also acts as fallback if video fails) */}
+            <Image
+              src="/hero/hero-mobile.svg"
+              alt=""
+              width={1600}
+              height={900}
+              priority
+              className="h-full w-full object-cover"
+            />
+
+            {/* Desktop video overlay (relative path => works with GitHub Pages basePath) */}
+            <video
+              className="hidden h-full w-full object-cover md:block"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster="hero/hero-mobile.svg"
+              aria-hidden="true"
+            >
+              <source src="hero/keiko.mp4" type="video/mp4" />
+            </video>
+
+            {/* Dark overlay for legibility */}
+            <div className="absolute inset-0 bg-black/55" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/35 to-black/55" />
+          </div>
+
+          <div className="mx-auto w-full max-w-6xl px-4 py-16 md:py-24">
+            <Reveal>
+              <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/30 px-3 py-1 text-xs font-medium text-white/80 backdrop-blur">
                 <span className="size-1.5 rounded-full bg-accent" />
-                部員募集中｜初心者・経験者どちらも歓迎
+                新入部員募集中｜初心者・経験者歓迎
               </p>
-              <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
+              <h1 className="mt-5 font-display text-4xl font-semibold tracking-tight text-white sm:text-6xl">
                 会津大学剣道部
-                <span className="mt-2 block text-lg font-medium text-muted sm:text-xl">
-                  Aizu University Kendo Club
-                </span>
               </h1>
-              <p className="mt-4 max-w-prose leading-8 text-muted">
-                基本を大切に、一本の重みを磨く。学業と両立しながら、稽古・大会・交流戦を通して
-                「強さ」と「礼」を育てます。
+              <p className="mt-2 text-sm text-white/75 sm:text-base">
+                Aizu University Kendo Club
+              </p>
+              <p className="mt-5 max-w-2xl text-base leading-8 text-white/85 sm:text-lg">
+                「剣に生きる、技に磨きを。」<br />
+                「一打に魂を込めて。」
               </p>
 
-              <div className="mt-7 flex flex-wrap items-center gap-3">
+              <div className="mt-8 flex flex-wrap items-center gap-3">
                 <a
-                  href="#contact"
-                  className="inline-flex h-11 items-center justify-center rounded-xl bg-accent px-5 text-sm font-semibold text-white shadow-sm shadow-shadow/15 transition hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-accent/40"
+                  href="#youtube"
+                  className="inline-flex h-12 items-center justify-center rounded-xl border border-white/20 bg-zinc-900/65 px-6 text-sm font-semibold text-white/90 backdrop-blur transition hover:bg-zinc-900/80 focus:outline-none focus:ring-2 focus:ring-white/35"
                 >
-                  Join Us / 入部案内
+                  動画を見る（稽古・大会）
                   <ArrowRight className="ml-2 size-4" aria-hidden="true" />
-                </a>
-                <a
-                  href="#activities"
-                  className="inline-flex h-11 items-center justify-center rounded-xl border border-border bg-card px-5 text-sm font-semibold text-foreground transition hover:bg-background focus:outline-none focus:ring-2 focus:ring-accent/35"
-                >
-                  活動内容を見る
                 </a>
               </div>
 
-              <dl className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
-                <div className="rounded-2xl border border-border bg-card p-4 shadow-sm shadow-shadow/10">
-                  <dt className="text-xs text-muted">稽古</dt>
+              <dl className="mt-10 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4">
+                <div className="rounded-2xl border border-white/15 bg-black/25 p-4 text-white backdrop-blur">
+                  <dt className="text-xs text-white/70">稽古</dt>
                   <dd className="mt-1 text-sm font-semibold">
                     週3回（例）平日夕方
                   </dd>
                 </div>
-                <div className="rounded-2xl border border-border bg-card p-4 shadow-sm shadow-shadow/10">
-                  <dt className="text-xs text-muted">場所</dt>
+                <div className="rounded-2xl border border-white/15 bg-black/25 p-4 text-white backdrop-blur">
+                  <dt className="text-xs text-white/70">場所</dt>
                   <dd className="mt-1 text-sm font-semibold">学内 道場（例）</dd>
                 </div>
-                <div className="rounded-2xl border border-border bg-card p-4 shadow-sm shadow-shadow/10">
-                  <dt className="text-xs text-muted">雰囲気</dt>
-                  <dd className="mt-1 text-sm font-semibold">熱量 × 和やか</dd>
+                <div className="rounded-2xl border border-white/15 bg-black/25 p-4 text-white backdrop-blur">
+                  <dt className="text-xs text-white/70">目的</dt>
+                  <dd className="mt-1 text-sm font-semibold">活動紹介・募集</dd>
+                </div>
+                <div className="rounded-2xl border border-white/15 bg-black/25 p-4 text-white backdrop-blur">
+                  <dt className="text-xs text-white/70">雰囲気</dt>
+                  <dd className="mt-1 text-sm font-semibold">迫力 × 礼節</dd>
                 </div>
               </dl>
-            </div>
-          </Reveal>
 
-          <Reveal delay={0.1}>
-            <div className="relative overflow-hidden rounded-3xl border border-border bg-card shadow-sm shadow-shadow/10">
-              <div className="absolute inset-0 bg-gradient-to-tr from-accent/10 via-accent-2/10 to-transparent" />
-              <Image
-                src="/hero/hero-kendo.svg"
-                alt="剣道の構えをイメージしたビジュアル"
-                width={960}
-                height={720}
-                priority
-                className="relative h-auto w-full"
-              />
-              <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-border/70 bg-background/80 p-4 backdrop-blur">
-                <p className="font-display text-sm font-semibold">
-                  Motto: 「正しく、強く、礼を尽くす」
-                </p>
-                <p className="mt-1 text-xs text-muted">
-                  オシャレ / 剣道モード切替で雰囲気が変わります
-                </p>
-              </div>
-            </div>
-          </Reveal>
+              <p className="mt-6 text-xs text-white/60">
+                ※モバイルは軽量化のため静止画表示になります。PC/タブレットは動画ループ再生。
+              </p>
+            </Reveal>
+          </div>
         </section>
 
-        {/* About */}
-        <section id="about" className="py-14">
+        <div className="mx-auto w-full max-w-6xl px-4">
+          {/* YouTube */}
+          <section id="youtube" className="py-14">
+            <Reveal>
+              <h2 className="font-display text-2xl font-semibold tracking-tight">
+                過去の稽古風景・大会動画
+              </h2>
+              <p className="mt-2 max-w-prose text-muted">
+                稽古の迫力・間合い・空気感を映像で。サムネイルをクリックすると埋め込みが切り替わります。
+              </p>
+            </Reveal>
+            <div className="mt-6">
+              <Reveal delay={0.05}>
+                <YouTubeGallery lang="ja" />
+              </Reveal>
+            </div>
+          </section>
+
+          {/* About */}
+          <section id="about" className="py-14">
           <Reveal>
             <div className="flex items-end justify-between gap-4">
               <div>
@@ -202,10 +214,10 @@ export default function Home() {
               </div>
             </Reveal>
           </div>
-        </section>
+          </section>
 
-        {/* Activities */}
-        <section id="activities" className="py-14">
+          {/* Activities */}
+          <section id="activities" className="py-14">
           <Reveal>
             <h2 className="font-display text-2xl font-semibold tracking-tight">
               活動内容
@@ -287,66 +299,43 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
-        </section>
+          </section>
 
-        {/* Members */}
-        <section id="members" className="py-14">
+          {/* Members */}
+          <section id="members" className="py-14">
           <Reveal>
             <h2 className="font-display text-2xl font-semibold tracking-tight">
               部員紹介
             </h2>
             <p className="mt-2 max-w-prose text-muted">
-              現役部員の紹介と、先輩の声を掲載します（例）。
+              現役部員の紹介を掲載します（例）。
             </p>
           </Reveal>
 
           <div className="mt-6 grid gap-4 md:grid-cols-2">
-            <div className="grid gap-4">
-              {members.map((m, idx) => (
-                <Reveal key={m.name} delay={0.04 * idx}>
-                  <div className="flex items-start justify-between gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm shadow-shadow/10">
-                    <div>
-                      <p className="font-display text-lg font-semibold">
-                        {m.name}
-                      </p>
-                      <p className="mt-1 text-sm text-muted">{m.role}</p>
-                      <p className="mt-3 text-sm leading-7 text-foreground">
-                        {m.note}
-                      </p>
-                    </div>
-                    <div className="grid size-11 place-items-center rounded-2xl bg-background">
-                      <Users className="size-5 text-accent" aria-hidden="true" />
-                    </div>
+            {members.map((m, idx) => (
+              <Reveal key={m.name} delay={0.04 * idx}>
+                <div className="flex items-start justify-between gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm shadow-shadow/10">
+                  <div className="min-w-0">
+                    <p className="font-display text-lg font-semibold">
+                      {m.name}
+                    </p>
+                    <p className="mt-1 text-sm text-muted">{m.role}</p>
+                    <p className="mt-3 text-sm leading-7 text-foreground">
+                      {m.note}
+                    </p>
                   </div>
-                </Reveal>
-              ))}
-            </div>
-
-            <Reveal delay={0.1}>
-              <div className="rounded-2xl border border-border bg-card p-6 shadow-sm shadow-shadow/10">
-                <p className="font-display text-xl font-semibold">先輩の声</p>
-                <div className="mt-4 space-y-4">
-                  {seniors.map((s) => (
-                    <figure
-                      key={s.name}
-                      className="rounded-2xl border border-border bg-background p-4"
-                    >
-                      <blockquote className="text-sm leading-7 text-foreground">
-                        “{s.quote}”
-                      </blockquote>
-                      <figcaption className="mt-2 text-xs text-muted">
-                        — {s.name}
-                      </figcaption>
-                    </figure>
-                  ))}
+                  <div className="grid size-11 shrink-0 place-items-center rounded-2xl bg-background">
+                    <Users className="size-5 text-accent" aria-hidden="true" />
+                  </div>
                 </div>
-              </div>
-            </Reveal>
+              </Reveal>
+            ))}
           </div>
-        </section>
+          </section>
 
-        {/* SNS & Contact */}
-        <section id="contact" className="py-14">
+          {/* SNS & Contact */}
+          <section id="contact" className="py-14">
           <Reveal>
             <h2 className="font-display text-2xl font-semibold tracking-tight">
               SNS & Contact
@@ -366,14 +355,14 @@ export default function Home() {
                       href="https://x.com/kendo_uoa"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex h-10 items-center justify-center rounded-xl bg-background px-3 text-sm font-semibold text-foreground ring-1 ring-border transition hover:bg-card focus:outline-none focus:ring-2 focus:ring-accent/35"
+                        className="inline-flex h-10 items-center justify-center rounded-xl border border-border bg-card px-3 text-sm font-semibold text-foreground shadow-sm shadow-shadow/10 transition hover:-translate-y-0.5 hover:bg-background hover:shadow-md focus:outline-none focus:ring-2 focus:ring-accent/35"
                     >
                       @kendo_uoa を開く
                       <ArrowRight className="ml-2 size-4" aria-hidden="true" />
                     </a>
                     <a
                       href="mailto:kendo_uoa@example.com?subject=%E3%80%90%E4%BC%9A%E6%B4%A5%E5%A4%A7%E5%AD%A6%E5%89%A3%E9%81%93%E9%83%A8%E3%80%91%E8%A6%8B%E5%AD%A6%E7%94%B3%E8%BE%BC%E3%81%BF"
-                      className="inline-flex h-10 items-center justify-center rounded-xl bg-accent px-3 text-sm font-semibold text-white shadow-sm shadow-shadow/15 transition hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-accent/40"
+                        className="inline-flex h-10 items-center justify-center rounded-xl border border-white/15 bg-zinc-900/70 px-3 text-sm font-semibold text-zinc-100 shadow-sm shadow-black/30 backdrop-blur transition hover:-translate-y-0.5 hover:bg-zinc-900/85 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-white/35"
                     >
                       部活見学申し込み
                       <ArrowRight className="ml-2 size-4" aria-hidden="true" />
@@ -405,10 +394,11 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={0.1}>
-              <ContactForm />
+              <ContactForm lang="ja" />
             </Reveal>
           </div>
-        </section>
+          </section>
+        </div>
       </main>
 
       <footer className="mt-10 border-t border-border/70 bg-background">
