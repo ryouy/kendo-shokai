@@ -115,7 +115,8 @@ function headerClass() {
 
 export function JoinSteps({ lang }: { lang: Lang }) {
   // Subscribe so poyo toggle live-updates the copy.
-  useSyncExternalStore<Tone>(subscribeTone, getToneSnapshot, () => "normal");
+  const tone = useSyncExternalStore<Tone>(subscribeTone, getToneSnapshot, () => "normal");
+  const isPoyo = tone === "poyo";
   const c = copy(lang);
 
   return (
@@ -139,8 +140,12 @@ export function JoinSteps({ lang }: { lang: Lang }) {
               ].join(" ")}
             >
               {lang === "en"
-                ? "Low-pressure, but we do practice properly. Start whenever you like."
-                : "ゆるいけど、ちゃんと剣道してます。気軽に、でもまじめに。"}
+                ? isPoyo
+                  ? "Low-pressure, but still real practice. Float in whenever you like."
+                  : "Low-pressure, but we do practice properly. Start whenever you like."
+                : isPoyo
+                  ? "ゆるいけど、ちゃんと剣道してるぽよ。気軽に、でも、ふわっとまじめぽよ。"
+                  : "ゆるいけど、ちゃんと剣道してます。気軽に、でもまじめに。"}
             </p>
           </div>
         </div>
