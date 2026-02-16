@@ -79,11 +79,13 @@ export function FaqAccordion({
   variant,
   lang,
   compact = false,
+  hideHeader = false,
   className = "",
 }: {
   variant: Variant;
   lang: Lang;
   compact?: boolean;
+  hideHeader?: boolean;
   className?: string;
 }) {
   const rid = useId();
@@ -94,29 +96,36 @@ export function FaqAccordion({
 
   return (
     <section className={[compact ? "py-0" : "py-14", className].join(" ")}>
-      <Reveal>
-        <div>
-          <h2
-            className={[
-              "font-display text-2xl tracking-tight sm:text-3xl",
-              variant === "kendo" ? "font-semibold text-white" : "font-extrabold text-foreground",
-            ].join(" ")}
-          >
-            {c.title}
-          </h2>
-          <p
-            id={hint}
-            className={[
-              "mt-2 max-w-prose text-sm leading-7",
-              variant === "kendo" ? "text-white/75" : "text-muted",
-            ].join(" ")}
-          >
-            {c.subtitle}
-          </p>
-        </div>
-      </Reveal>
+      {hideHeader ? null : (
+        <Reveal>
+          <div>
+            <h2
+              className={[
+                "font-display text-2xl tracking-tight sm:text-3xl",
+                variant === "kendo" ? "font-semibold text-white" : "font-extrabold text-foreground",
+              ].join(" ")}
+            >
+              {c.title}
+            </h2>
+            <p
+              id={hint}
+              className={[
+                "mt-2 max-w-prose text-sm leading-7",
+                variant === "kendo" ? "text-white/75" : "text-muted",
+              ].join(" ")}
+            >
+              {c.subtitle}
+            </p>
+          </div>
+        </Reveal>
+      )}
 
-      <div className={["grid gap-3", compact ? "mt-4" : "mt-6"].join(" ")}>
+      <div
+        className={[
+          "grid gap-3",
+          compact ? (hideHeader ? "mt-0" : "mt-4") : "mt-6",
+        ].join(" ")}
+      >
         {c.items.map((it, i) => {
           const isOpen = open === i;
           const panelId = `${rid}-panel-${i}`;
@@ -129,7 +138,7 @@ export function FaqAccordion({
                   type="button"
                   aria-expanded={isOpen}
                   aria-controls={panelId}
-                  aria-describedby={hint}
+                  aria-describedby={hideHeader ? undefined : hint}
                   onClick={() => setOpen((v) => (v === i ? null : i))}
                   className={buttonClass(variant)}
                 >

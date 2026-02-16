@@ -27,67 +27,71 @@ function iconFor(kind: Step["icon"]) {
 
 function copy(lang: Lang) {
   if (lang === "en") {
-    return {
-      title: "Getting started is easy.",
-      steps: [
-        {
-          icon: "visit",
-          title: "STEP 1 | Drop in for a visit",
-          bullets: [
-            "No reservation needed",
-            "Just come to the gym 2F dojo",
-            "Even without a reply, it’s okay to come",
-          ],
-          note: "Sometimes we take days off, so a quick heads-up beforehand helps a lot.",
-        },
-        {
-          icon: "try",
-          title: "STEP 2 | Try it",
-          bullets: [
-            "You can swing a shinai that day",
-            "We can lend armor and uniform",
-            "Watching only is totally fine",
-            "No pressure — we won’t force you",
-          ],
-          quote: "Join if you feel like it, watch if you’re tired. Your pace is perfect.",
-        },
-        {
-          icon: "continue",
-          title: "STEP 3 | Keep coming",
-          bullets: ["No paperwork", "No roster", "No club fee"],
-          quote: "Before you know it, you’re one of us. Come whenever you want.",
-        },
-      ] satisfies Step[],
-    };
-  }
-
-  return {
-    title: "はじめかたは、かんたん。",
-    steps: [
+    const steps: Step[] = [
       {
         icon: "visit",
-        title: "STEP 1｜ふらっと見学",
-        bullets: ["予約なしでOK", "体育館2F武道場へそのまま来てOK", "返信がなくても来て大丈夫"],
-        note: "たまにお休みの日もあるので、事前に連絡をもらえると嬉しいです。",
+        title: "STEP 1 | Drop in for a visit",
+        bullets: [
+          "No reservation needed",
+          "Just come to the gym 2F dojo",
+          "Even without a reply, it’s okay to come",
+        ],
+        note: "Sometimes we take days off, so a quick heads-up beforehand helps a lot.",
       },
       {
         icon: "try",
-        title: "STEP 2｜やってみる",
+        title: "STEP 2 | Try it",
         bullets: [
-          "その日に竹刀を振れます",
-          "防具・胴着は貸し出しあり",
-          "見学だけでもOK",
-          "無理にやらせることはありません",
+          "You can swing a shinai that day",
+          "We can lend armor and uniform",
+          "Watching only is totally fine",
+          "No pressure — we won’t force you",
         ],
-        quote: "気が向いたら参加、疲れたら見学。自分のペースで大丈夫です。",
+        quote: "Join if you feel like it, watch if you’re tired. Your pace is perfect.",
       },
       {
         icon: "continue",
-        title: "STEP 3｜そのまま続ける",
-        bullets: ["入部手続きなし", "名簿なし", "部費なし"],
-        quote: "気づいたら、もう仲間です。来たいときに来てください。",
+        title: "STEP 3 | Keep coming",
+        bullets: ["No paperwork", "No roster", "No club fee"],
+        quote: "Before you know it, you’re one of us. Come whenever you want.",
       },
-    ] satisfies Step[],
+    ];
+
+    return {
+      title: "Getting started is easy.",
+      steps,
+    };
+  }
+
+  const steps: Step[] = [
+    {
+      icon: "visit",
+      title: "STEP 1｜ふらっと見学",
+      bullets: ["予約なしでOK", "体育館2F武道場へそのまま来てOK", "返信がなくても来て大丈夫"],
+      note: "たまにお休みの日もあるので、事前に連絡をもらえると嬉しいです。",
+    },
+    {
+      icon: "try",
+      title: "STEP 2｜やってみる",
+      bullets: [
+        "その日に竹刀を振れます",
+        "防具・胴着は貸し出しあり",
+        "見学だけでもOK",
+        "無理にやらせることはありません",
+      ],
+      note: "気が向いたら参加、疲れたら見学。自分のペースで大丈夫です。",
+    },
+    {
+      icon: "continue",
+      title: "STEP 3｜そのまま続ける",
+      bullets: ["入部手続きなし", "名簿なし", "部費なし"],
+      note: "気づけばもう仲間です。来たいときに来てください。",
+    },
+  ];
+
+  return {
+    title: "はじめかたは、かんたん。",
+    steps,
   };
 }
 

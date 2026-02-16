@@ -1,27 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  /* Base (Kendo/Bushido) theme variables (as RGB triples) */
-  --bg: 13 16 20;
-  --fg: 241 245 249;
-  --card: 20 24 30;
-  --muted: 163 174 189;
-  --border: 51 65 85;
-  --accent: 220 38 38; /* soft vermilion */
-  --accent-2: 234 179 8; /* warm gold */
-  --shadow: 0 0 0;
+  /* Chill theme (only) — warm, soft, fluffy */
+  --bg: 255 250 245; /* warm cream */
+  --fg: 31 41 55;
+  --card: 255 255 255;
+  --muted: 107 114 128;
+  --border: 236 228 222; /* warm border */
+  --accent: 251 178 89; /* soft rose */
+  --accent-2: 251 191 36; /* warm honey */
+  --shadow: 2 6 23;
 
   /* Font variables (set by next/font in layout) */
-  --font-body: var(--font-inter);
-  --font-display: var(--font-yuji);
-  --radius-card: 20px;
+  --font-body: var(--font-rounded);
+  --font-display: var(--font-rounded);
+  --radius-card: 28px;
   --radius-pill: 999px;
-  --shadow-card: 0 10px 28px rgba(0, 0, 0, 0.28);
-  --shadow-float: 0 14px 40px rgba(0, 0, 0, 0.36);
+  --shadow-card: 0 10px 26px rgba(31, 41, 55, 0.07);
+  --shadow-float: 0 18px 44px rgba(31, 41, 55, 0.12);
 
   /* Texture overlay */
-  --texture: url("/textures/sumi-noise.svg");
-  --texture-opacity: 0.10;
+  --texture: url("/textures/chill-doodles.svg");
+  --texture-opacity: 0.16;
   --texture-blend: multiply;
 
   /* Tailwind v4 color tokens */
@@ -42,34 +42,12 @@
   --font-display: var(--font-display);
 }
 
-html[data-theme="chill"] {
-  /* Chill theme: pastel, rounded, airy */
-  --bg: 253 252 248;
-  --fg: 17 24 39;
-  --card: 255 255 255;
-  --muted: 107 114 128;
-  --border: 226 232 240;
-  --accent: 147 51 234; /* purple */
-  --accent-2: 34 197 94; /* green */
-  --shadow: 2 6 23;
-
-  --font-body: var(--font-rounded);
-  --font-display: var(--font-rounded);
-
-  --radius-card: 28px;
-  --shadow-card: 0 10px 26px rgba(17, 24, 39, 0.08);
-  --shadow-float: 0 18px 44px rgba(17, 24, 39, 0.14);
-
-  --texture: url("/textures/chill-doodles.svg");
-  --texture-opacity: 0.14;
-  --texture-blend: multiply;
-
-  --background: rgb(var(--bg));
-  --foreground: rgb(var(--fg));
-}
+/* data-theme is kept on <html> for semantics, but the site is now Chill-only. */
 
 body {
-  background: rgb(var(--bg));
+  background: radial-gradient(1200px 600px at 15% 0%, rgba(251, 191, 36, 0.12), transparent 55%),
+    radial-gradient(1000px 520px at 85% 10%, rgba(251, 113, 133, 0.10), transparent 55%),
+    rgb(var(--bg));
   color: rgb(var(--fg));
   font-family: var(--font-body), ui-sans-serif, system-ui, -apple-system,
     BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -151,10 +129,4 @@ section {
   border: 1px solid rgb(var(--border));
 }
 
-/* Mode-based layout switches */
-html[data-theme="kendo"] .mode-chill {
-  display: none !important;
-}
-html[data-theme="chill"] .mode-kendo {
-  display: none !important;
-}
+/* Removed mode-based layout switches (Chill-only). */

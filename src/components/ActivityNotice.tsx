@@ -19,7 +19,7 @@ export function ActivityNotice({
   return (
     <div
       className={[
-        isHero ? "rounded-2xl border p-4 shadow-sm" : "aukc-card p-4",
+        isHero ? "rounded-2xl border p-3 shadow-sm sm:p-4" : "aukc-card p-3 sm:p-4",
         isHero
           ? "border-white/15 bg-black/25 text-white shadow-black/30 backdrop-blur"
           : "",
@@ -60,7 +60,7 @@ export function ActivityNotice({
 
       <div
         className={[
-          title || withXLink ? "mt-3" : "",
+          title || withXLink ? "mt-2" : "",
           "grid gap-2 text-sm sm:grid-cols-2 sm:gap-3",
         ].join(" ")}
       >
@@ -69,8 +69,8 @@ export function ActivityNotice({
             className={["mt-0.5 size-4", isHero ? "text-white/85" : "text-accent"].join(" ")}
             aria-hidden="true"
           />
-          <p className={["leading-6", isHero ? "text-white" : ""].join(" ")}>
-            <span className="text-base font-semibold">{schedule}</span>
+          <p className={["leading-5 sm:leading-6", isHero ? "text-white" : ""].join(" ")}>
+            <span className="text-sm font-semibold sm:text-base">{schedule}</span>
           </p>
         </div>
         <div className="flex items-start gap-2">
@@ -78,8 +78,8 @@ export function ActivityNotice({
             className={["mt-0.5 size-4", isHero ? "text-white/85" : "text-accent"].join(" ")}
             aria-hidden="true"
           />
-          <p className={["leading-6", isHero ? "text-white/90" : ""].join(" ")}>
-            <span className="text-base font-semibold">{place}</span>
+          <p className={["leading-5 sm:leading-6", isHero ? "text-white/90" : ""].join(" ")}>
+            <span className="text-sm font-semibold sm:text-base">{place}</span>
           </p>
         </div>
       </div>

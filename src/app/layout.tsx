@@ -52,27 +52,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" data-theme="kendo" suppressHydrationWarning>
+    <html lang="ja" data-theme="chill" suppressHydrationWarning>
       <head>
         <link rel="icon" href={`${basePath}/favi.png`} type="image/png" />
         <link rel="apple-touch-icon" href={`${basePath}/favi.png`} />
-      </head>
-      <Script id="theme-init" strategy="beforeInteractive">
-        {`
-(() => {
-  try {
-    const key = "aukc-theme";
-    const stored = localStorage.getItem(key);
-    const theme = stored === "kendo" || stored === "chill" ? stored : "kendo";
-    document.documentElement.dataset.theme = theme;
-  } catch (_) {
-    document.documentElement.dataset.theme = "kendo";
-  }
-})();
-        `.trim()}
-      </Script>
-      <Script id="lang-init" strategy="beforeInteractive">
-        {`
+        <Script id="lang-init" strategy="beforeInteractive">
+          {`
 (() => {
   try {
     const key = "aukc-lang";
@@ -88,8 +73,9 @@ export default function RootLayout({
     document.documentElement.dataset.lang = "ja";
   }
 })();
-        `.trim()}
-      </Script>
+          `.trim()}
+        </Script>
+      </head>
       <body className={`${inter.variable} ${yuji.variable} ${rounded.variable} antialiased`}>
         {children}
       </body>

@@ -1,9 +1,5 @@
-import Image from "next/image";
-import Script from "next/script";
-import { ArrowRight, CalendarDays, Instagram, MapPin, Trophy, Users } from "lucide-react";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { ArrowRight, Instagram, X } from "lucide-react";
 import { LanguageToggle } from "@/components/LanguageToggle";
-import { MobileNav } from "@/components/MobileNav";
 import { Reveal } from "@/components/Reveal";
 import { JoinSteps } from "@/components/JoinSteps";
 import { FaqAccordion } from "@/components/FaqAccordion";
@@ -14,26 +10,10 @@ import { ACTIVITY_EN } from "@/lib/activity";
 export const metadata = {
   title: "Aizu University Kendo Club",
   description:
-    "Official introduction page for Aizu University Kendo Club: activities, members, and social links.",
+    "Official introduction page for Aizu University Kendo Club: relaxed practice, videos, and contact.",
 };
 
 export default function HomeEn() {
-  const gallery = [
-    { src: "/gallery/01.svg", alt: "Kendo practitioner silhouette" },
-    { src: "/gallery/02.svg", alt: "Footwork and dojo floor impression" },
-    { src: "/gallery/03.svg", alt: "A strike moment illustration" },
-    { src: "/gallery/04.svg", alt: "Team lineup impression" },
-    { src: "/gallery/05.svg", alt: "Training camp impression" },
-    { src: "/gallery/06.svg", alt: "Armor and shinai icon" },
-  ] as const;
-
-  const members = [
-    { name: "Kaito Sato", role: "Captain", note: "“Fun and serious — let’s improve together.”" },
-    { name: "Nana Suzuki", role: "Vice Captain", note: "“Beginners welcome! We go slowly from the basics.”" },
-    { name: "Yuma Takahashi", role: "Manager", note: "“Your pace is okay. Come visit anytime.”" },
-    { name: "Rena Ito", role: "Treasurer", note: "“Great for getting back into exercise.”" },
-  ] as const;
-
   return (
     <div className="min-h-screen bg-background text-foreground">
       <a
@@ -43,581 +23,115 @@ export default function HomeEn() {
         Skip to content
       </a>
 
-      {/* Header (Kendo/Bushido) */}
-      <header className="mode-kendo sticky top-0 z-40 border-b border-border/70 bg-background/70 backdrop-blur">
-        <div className="mx-auto flex w-full max-w-6xl flex-nowrap items-center justify-between gap-3 px-4 py-3">
-          <div className="flex min-w-0 items-center gap-3">
-            <a
-              href="/en"
-              className="min-w-0 max-w-[52vw] truncate font-display text-base font-semibold"
-            >
-              Aizu Univ. Kendo Club
-            </a>
-            <span className="hidden whitespace-nowrap text-xs text-muted sm:inline">
-              会津大学剣道部
-            </span>
-          </div>
-          <nav className="hidden items-center gap-4 text-sm text-muted lg:flex lg:whitespace-nowrap">
-            <a className="hover:text-foreground" href="#youtube">
-              Videos
-            </a>
-            <a className="hover:text-foreground" href="#about">
-              About
-            </a>
-            <a className="hover:text-foreground" href="#activities">
-              Activities
-            </a>
-            <a className="hover:text-foreground" href="#members">
-              Members
-            </a>
-            <a className="hover:text-foreground" href="#contact">
-              SNS & Contact
-            </a>
-          </nav>
-          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-            <a href="#contact" className="hidden lg:inline-flex aukc-btn aukc-btn-primary">
-              Join / Visit
-              <ArrowRight className="ml-2 size-4" aria-hidden="true" />
-            </a>
-            <MobileNav
-              title="Aizu University Kendo Club"
-              items={[
-                { href: "#youtube", label: "Videos" },
-                { href: "#about", label: "About" },
-                { href: "#activities", label: "Activities" },
-                { href: "#members", label: "Members" },
-                { href: "#contact", label: "SNS & Contact" },
-              ]}
-            />
-            <LanguageToggle />
-            <ThemeToggle />
-          </div>
-        </div>
-      </header>
-
-      {/* Header (Chill) */}
-      <header className="mode-chill sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur">
+      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3 px-4 py-3">
-          <div className="flex min-w-0 items-center gap-2">
-            <span className="grid size-9 place-items-center rounded-2xl bg-accent/10 text-accent">
-              ch
-            </span>
-            <a href="/en" className="min-w-0 truncate font-display text-base font-bold">
-              Chill Kendo @ Aizu
-            </a>
-          </div>
+          <a href="/en" className="min-w-0 truncate font-display text-xl font-extrabold sm:text-2xl">
+            Aizu Univ. Kendo Club
+          </a>
           <div className="flex shrink-0 items-center gap-2">
             <a href="#chill-visit" className="aukc-btn aukc-btn-soft">
               Drop-in visit
               <ArrowRight className="ml-1 size-4" aria-hidden="true" />
             </a>
             <LanguageToggle />
-            <ThemeToggle />
           </div>
         </div>
       </header>
 
       <main id="main">
-        {/* ========================= */}
-        {/* Kendo/Bushido composition */}
-        {/* ========================= */}
-        <div className="mode-kendo">
         {/* Hero */}
-        <section className="relative isolate overflow-hidden border-b border-border/70">
-          <div className="absolute inset-0 -z-10">
-            <Image
-              src="/hero/hero-mobile.svg"
-              alt=""
-              width={1600}
-              height={900}
-              priority
-              className="h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-black/55" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/35 to-black/55" />
-          </div>
+        <section className="mx-auto w-full max-w-6xl px-4 py-10 sm:py-14">
+          <Reveal>
+            <div className="aukc-card overflow-hidden p-6 sm:p-10">
+              <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+                <div className="max-w-2xl">
+                  <p className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/60 px-3 py-1 text-xs font-bold text-muted backdrop-blur">
+                    chill exercise • beginners welcome • go at your pace
+                  </p>
+                  <h1 className="mt-4 font-display text-3xl font-extrabold tracking-tight sm:text-5xl">
+                    Chill kendo, maybe?
+                  </h1>
+                  <p className="mt-3 text-sm leading-7 text-muted sm:text-base">
+                    If you just want to move your body a little, that’s totally fine.
+                    No uniform needed for a first visit — come say hi.
+                  </p>
+                </div>
 
-          <div className="mx-auto w-full max-w-6xl px-4 py-16 md:py-24">
-            <Reveal>
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/30 px-3 py-1 text-xs font-semibold text-white/90 backdrop-blur">
-                  <span className="size-1.5 rounded-full bg-accent" />
-                  Visits welcome
-                </span>
-                <span className="inline-flex items-center rounded-full border border-white/15 bg-black/30 px-3 py-1 text-xs font-medium text-white/75 backdrop-blur">
-                  Beginners welcome • go at your own pace
-                </span>
-              </div>
-              <h1 className="mt-5 break-words text-balance font-display text-4xl font-semibold tracking-tight text-white sm:text-6xl">
-                Aizu University Kendo Club
-              </h1>
-              <p className="mt-2 text-sm text-white/75 sm:text-base">
-                会津大学剣道部
-              </p>
-              <p className="mt-5 max-w-2xl text-base leading-8 text-white/85 sm:text-lg">
-                Fun and serious — both. <br />
-                First time is totally fine. Learn kendo at your own pace.
-              </p>
-
-              <div className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:justify-start">
-                <a
-                  href="#contact"
-                  className="w-full aukc-btn aukc-btn-primary sm:w-auto"
-                >
-                  Join / Schedule a visit
-                  <ArrowRight className="ml-2 size-4" aria-hidden="true" />
-                </a>
-                <a
-                  href="#youtube"
-                  className="w-full aukc-btn aukc-btn-soft sm:w-auto"
-                >
-                  Watch videos
-                  <ArrowRight className="ml-2 size-4" aria-hidden="true" />
-                </a>
-                <div className="flex items-center justify-center gap-2 sm:justify-start">
+                <div className="flex shrink-0 flex-col gap-3">
+                  <a href="#chill-visit" className="aukc-btn aukc-btn-primary">
+                    Visit (welcome)
+                    <ArrowRight className="ml-1 size-4" aria-hidden="true" />
+                  </a>
                   <a
                     href="https://x.com/kendo_uoa"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="aukc-btn aukc-btn-ghost"
                   >
-                    X (Twitter)
-                    <ArrowRight className="ml-2 size-4" aria-hidden="true" />
+                    Updates on X
+                    <ArrowRight className="ml-1 size-4" aria-hidden="true" />
                   </a>
                   <a
                     href="https://www.instagram.com/uoa_kendo"
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="Instagram (@uoa_kendo)"
-                    className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/15 bg-black/25 text-white/90 shadow-sm shadow-black/30 backdrop-blur transition hover:-translate-y-0.5 hover:bg-black/35 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-white/35"
+                    className="aukc-btn aukc-btn-ghost"
                   >
-                    <Instagram className="size-5" aria-hidden="true" />
+                    Updates on Instagram
+                    <ArrowRight className="ml-1 size-4" aria-hidden="true" />
                   </a>
                 </div>
               </div>
 
-              <div className="mt-10 max-w-3xl">
+              <div className="mt-6">
                 <ActivityNotice
-                  variant="hero"
                   title="Schedule & location"
                   schedule={ACTIVITY_EN.schedule}
                   place={ACTIVITY_EN.place}
                   withXLink={false}
                 />
               </div>
-
-              <p className="mt-6 text-xs text-white/60">
-                *For performance, the background is shown as a static poster image.
-              </p>
-            </Reveal>
-          </div>
+            </div>
+          </Reveal>
         </section>
 
-        <div className="mx-auto w-full max-w-6xl px-4">
-          {/* YouTube */}
-          <section id="youtube" className="py-14">
+        {/* Steps */}
+        <section className="mx-auto w-full max-w-6xl px-4">
+          <JoinSteps variant="chill" lang="en" />
+        </section>
+
+        {/* Video corner */}
+        <section className="mx-auto w-full max-w-6xl px-4 py-10">
+          <div>
             <Reveal>
-              <h2 className="font-display text-2xl font-semibold tracking-tight">
-                Practice & match videos
+              <h2 className="font-display text-2xl font-extrabold tracking-tight">
+                Cozy video corner
               </h2>
-              <p className="mt-2 max-w-prose text-muted">
-                Click a thumbnail to switch the embedded video.
-              </p>
+              <p className="mt-2 max-w-prose text-muted">Tap a thumbnail to switch the embed.</p>
             </Reveal>
             <div className="mt-6">
               <Reveal delay={0.05}>
                 <YouTubeGallery lang="en" />
               </Reveal>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* About */}
-          <section id="about" className="py-14">
-            <Reveal>
-              <div className="flex items-end justify-between gap-4">
-                <div>
-                  <h2 className="font-display text-2xl font-semibold tracking-tight">
-                    About
-                  </h2>
-                  <p className="mt-2 max-w-prose text-muted">
-                    Friendly atmosphere with solid fundamentals. Beginners and experienced members are both welcome.
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-
-            <div className="mt-6 grid gap-4 md:grid-cols-3">
-              <Reveal delay={0.05}>
-                <div className="h-full rounded-2xl border border-border bg-card p-6 shadow-sm shadow-shadow/10">
-                  <p className="font-display text-lg font-semibold">Philosophy</p>
-                  <p className="mt-2 text-sm leading-7 text-muted">
-                    We aim for fun practice sessions. It’s totally okay if you just want to move your body—no pressure.
-                  </p>
-                </div>
-              </Reveal>
-              <Reveal delay={0.1}>
-                <div className="h-full rounded-2xl border border-border bg-card p-6 shadow-sm shadow-shadow/10">
-                  <p className="font-display text-lg font-semibold">What makes us us</p>
-                  <p className="mt-2 text-sm leading-7 text-muted">
-                    Beginners welcome, and you can go at your own pace. No experience required—come visit first!
-                  </p>
-                </div>
-              </Reveal>
-              <Reveal delay={0.15}>
-                <div className="h-full rounded-2xl border border-border bg-card p-6 shadow-sm shadow-shadow/10">
-                  <p className="font-display text-lg font-semibold">Motto</p>
-                  <p className="mt-2 text-sm leading-7 text-muted">
-                    “Fun, but serious.” Small steps, steady improvement.
-                  </p>
-                </div>
-              </Reveal>
-            </div>
-          </section>
-
-          {/* Activities */}
-          <section id="activities" className="py-14">
-            <Reveal>
-              <h2 className="font-display text-2xl font-semibold tracking-tight">
-                Activities
-              </h2>
-              <p className="mt-2 max-w-prose text-muted">
-                Our schedule/location is fixed as below. Visitors are welcome.
-              </p>
-            </Reveal>
-
-            <div className="mt-6">
-              <Reveal delay={0.05}>
-                <ActivityNotice
-                  title="Schedule & location"
-                  schedule={ACTIVITY_EN.schedule}
-                  place={ACTIVITY_EN.place}
-                  xLabel="Updates on X"
-                />
-              </Reveal>
-            </div>
-
-            <div className="mt-6 grid gap-4 md:grid-cols-3">
-              <Reveal delay={0.05}>
-                <div className="rounded-2xl border border-border bg-card p-6 shadow-sm shadow-shadow/10">
-                  <div className="flex items-center gap-2">
-                    <CalendarDays className="size-5 text-accent" aria-hidden="true" />
-                    <p className="font-display text-lg font-semibold">Schedule</p>
-                  </div>
-                  <ul className="mt-3 space-y-2 text-sm text-muted">
-                    <li>{ACTIVITY_EN.schedule}</li>
-                    <li>Fun practice with solid fundamentals</li>
-                    <li>Beginners start step-by-step</li>
-                  </ul>
-                </div>
-              </Reveal>
-              <Reveal delay={0.1}>
-                <div className="rounded-2xl border border-border bg-card p-6 shadow-sm shadow-shadow/10">
-                  <div className="flex items-center gap-2">
-                    <MapPin className="size-5 text-accent" aria-hidden="true" />
-                    <p className="font-display text-lg font-semibold">Location</p>
-                  </div>
-                  <ul className="mt-3 space-y-2 text-sm text-muted">
-                    <li>{ACTIVITY_EN.place}</li>
-                    <li>Come in comfortable clothes for a visit</li>
-                    <li>A quick message helps us coordinate</li>
-                  </ul>
-                </div>
-              </Reveal>
-              <Reveal delay={0.15}>
-                <div className="rounded-2xl border border-border bg-card p-6 shadow-sm shadow-shadow/10">
-                  <div className="flex items-center gap-2">
-                    <Trophy className="size-5 text-accent" aria-hidden="true" />
-                    <p className="font-display text-lg font-semibold">Camps / Matches</p>
-                  </div>
-                  <ul className="mt-3 space-y-2 text-sm text-muted">
-                    <li>Seasonal training camps (example)</li>
-                    <li>Regional and student tournaments</li>
-                    <li>Exchange practice with nearby universities & adults</li>
-                  </ul>
-                </div>
-              </Reveal>
-            </div>
-
-            <Reveal>
-              <div className="mt-10">
-                <h3 className="font-display text-xl font-semibold tracking-tight">
-                  Photo gallery
-                </h3>
-                <p className="mt-1 text-sm text-muted">
-                  *Placeholder images — replace with real photos anytime.
-                </p>
-              </div>
-            </Reveal>
-
-            <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {gallery.map((g, i) => (
-                <Reveal key={g.src} delay={0.02 * i}>
-                  <div className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm shadow-shadow/10">
-                    <Image
-                      src={g.src}
-                      alt={g.alt}
-                      width={960}
-                      height={720}
-                      className="h-56 w-full object-cover transition duration-300 group-hover:scale-[1.02]"
-                    />
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </section>
-
-          {/* Steps */}
-          <JoinSteps variant="kendo" lang="en" />
-
-          {/* FAQ */}
-          <FaqAccordion variant="kendo" lang="en" />
-
-          {/* Members */}
-          <section id="members" className="py-14">
-            <Reveal>
-              <h2 className="font-display text-2xl font-semibold tracking-tight">
-                Members
-              </h2>
-              <p className="mt-2 max-w-prose text-muted">
-                Current members (examples).
-              </p>
-            </Reveal>
-
-            <div className="mt-6 grid gap-4 md:grid-cols-2">
-              {members.map((m, idx) => (
-                <Reveal key={m.name} delay={0.04 * idx}>
-                  <div className="flex items-start justify-between gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm shadow-shadow/10">
-                    <div className="min-w-0">
-                      <p className="font-display text-lg font-semibold">{m.name}</p>
-                      <p className="mt-1 text-sm text-muted">{m.role}</p>
-                      <p className="mt-3 text-sm leading-7 text-foreground">{m.note}</p>
-                    </div>
-                    <div className="grid size-11 shrink-0 place-items-center rounded-2xl bg-background">
-                      <Users className="size-5 text-accent" aria-hidden="true" />
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </section>
-
-          {/* SNS & Contact */}
-          <section id="contact" className="py-14">
-            <Reveal>
-              <h2 className="font-display text-2xl font-semibold tracking-tight">
-                SNS & Contact
-              </h2>
-              <p className="mt-2 max-w-prose text-muted">
-                We post updates on social media. Feel free to message us about joining or visits.
-              </p>
-            </Reveal>
-
-            <div className="mt-6 grid gap-4 lg:grid-cols-2">
-              <Reveal delay={0.05}>
-                <div className="rounded-2xl border border-border bg-card p-5 shadow-sm shadow-shadow/10">
-                  <div className="flex items-center justify-between gap-3">
-                    <p className="font-display text-lg font-semibold">Social</p>
-                    <div className="flex flex-col items-end gap-2">
-                      <p className="text-xs text-muted">Quick route: DM us → drop in</p>
-                      <div className="grid grid-cols-2 gap-2">
-                        <a
-                          href="https://x.com/kendo_uoa"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex h-10 w-full items-center justify-center rounded-xl border border-border bg-card px-3 text-sm font-semibold text-foreground shadow-sm shadow-shadow/10 transition hover:-translate-y-0.5 hover:bg-background hover:shadow-md focus:outline-none focus:ring-2 focus:ring-accent/35"
-                        >
-                          X
-                          <ArrowRight className="ml-2 size-4" aria-hidden="true" />
-                        </a>
-                        <a
-                          href="https://www.instagram.com/uoa_kendo"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-xl border border-border bg-card px-3 text-sm font-semibold text-foreground shadow-sm shadow-shadow/10 transition hover:-translate-y-0.5 hover:bg-background hover:shadow-md focus:outline-none focus:ring-2 focus:ring-accent/35"
-                        >
-                          <Instagram className="size-4" aria-hidden="true" />
-                          Instagram
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-4 rounded-2xl border border-border bg-background p-4 text-sm text-muted">
-                    <p className="font-semibold text-foreground">For beginners</p>
-                    <p className="mt-2 leading-7">
-                      We can lend shinai, armor, and uniform. Beginners can join right away.
-                      You can also drop in without messaging us first — totally okay.
-                      Sometimes we take days off, so a quick message beforehand helps a lot!
-                    </p>
-                    <p className="mt-3 text-xs">
-                      For questions or visit coordination, please DM us on X or Instagram.
-                    </p>
-                  </div>
-
-                  <div className="mt-4 overflow-hidden rounded-2xl border border-border bg-background">
-                    <div className="p-3 text-xs text-muted">
-                      If the embed is blocked, please use the buttons above.
-                    </div>
-                    <div className="h-[420px] overflow-auto px-3 pb-3 sm:h-[540px]">
-                      <a
-                        className="twitter-timeline"
-                        data-height="520"
-                        data-dnt="true"
-                        href="https://x.com/kendo_uoa"
-                      >
-                        Tweets by kendo_uoa
-                      </a>
-                    </div>
-                  </div>
-
-                  <Script
-                    src="https://platform.twitter.com/widgets.js"
-                    strategy="lazyOnload"
-                  />
-                </div>
-              </Reveal>
-
-              <Reveal delay={0.1}>
-                <div className="rounded-2xl border border-border bg-card p-5 shadow-sm shadow-shadow/10">
-                  <p className="font-display text-lg font-semibold tracking-tight">Contact</p>
-                  <p className="mt-2 text-sm leading-7 text-muted">
-                    We don’t accept contact via email. For questions or visit coordination, please DM us on social media.
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    <a
-                      href="https://x.com/kendo_uoa"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex h-11 items-center justify-center rounded-xl border border-border bg-background px-3 text-sm font-semibold text-foreground shadow-sm shadow-shadow/10 transition hover:-translate-y-0.5 hover:bg-card hover:shadow-md focus:outline-none focus:ring-2 focus:ring-accent/35"
-                    >
-                      DM on X
-                      <ArrowRight className="ml-2 size-4" aria-hidden="true" />
-                    </a>
-                    <a
-                      href="https://www.instagram.com/uoa_kendo"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-border bg-background px-3 text-sm font-semibold text-foreground shadow-sm shadow-shadow/10 transition hover:-translate-y-0.5 hover:bg-card hover:shadow-md focus:outline-none focus:ring-2 focus:ring-accent/35"
-                    >
-                      <Instagram className="size-4" aria-hidden="true" />
-                      DM on Instagram
-                      <ArrowRight className="ml-1 size-4" aria-hidden="true" />
-                    </a>
-                  </div>
-                </div>
-              </Reveal>
-            </div>
-          </section>
-        </div>
-        </div>
-
-        {/* ========================= */}
-        {/* Chill composition (new)    */}
-        {/* ========================= */}
-        <div className="mode-chill">
-          <section className="mx-auto w-full max-w-6xl px-4 py-10 sm:py-14">
+        {/* Bottom: FAQ + Visit */}
+        <section id="chill-visit" className="mx-auto w-full max-w-6xl px-4 py-12">
+          <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
             <Reveal>
               <div className="aukc-card p-6 sm:p-10">
-                <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-                  <div className="max-w-2xl">
-                    <p className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs font-bold text-muted">
-                      chill exercise • beginners welcome • go at your pace
-                    </p>
-                    <h1 className="mt-4 font-display text-3xl font-extrabold tracking-tight sm:text-5xl">
-                      Chill kendo, maybe?
-                    </h1>
-                    <p className="mt-3 text-sm leading-7 text-muted sm:text-base">
-                      If you just want to move your body a little, that’s totally fine.
-                      No uniform needed for a first visit — come say hi.
-                    </p>
-                  </div>
-
-                  <div className="flex shrink-0 flex-col gap-3">
-                    <a href="#chill-visit" className="aukc-btn aukc-btn-primary">
-                      Visit (welcome)
-                      <ArrowRight className="ml-1 size-4" aria-hidden="true" />
-                    </a>
-                    <a
-                      href="https://x.com/kendo_uoa"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="aukc-btn aukc-btn-ghost"
-                    >
-                      Updates on X
-                      <ArrowRight className="ml-1 size-4" aria-hidden="true" />
-                    </a>
-                  </div>
-                </div>
-
+                <h2 className="font-display text-2xl font-extrabold tracking-tight">FAQ</h2>
+                <p className="mt-2 max-w-prose text-sm leading-7 text-muted">
+                  Frequently asked questions for first-time visitors.
+                </p>
                 <div className="mt-6">
-                  <ActivityNotice
-                    title="Schedule & location"
-                    schedule={ACTIVITY_EN.schedule}
-                    place={ACTIVITY_EN.place}
-                    withXLink={false}
-                  />
+                  <FaqAccordion variant="chill" lang="en" compact hideHeader className="py-0" />
                 </div>
               </div>
             </Reveal>
-          </section>
 
-          <section className="mx-auto w-full max-w-6xl px-4 pb-10">
-            <Reveal>
-              <div className="grid gap-4 md:grid-cols-3">
-                <div className="aukc-card p-6">
-                  <p className="font-display text-lg font-extrabold">Chill menu</p>
-                  <p className="mt-2 text-sm leading-7 text-muted">
-                    Light warm-up, footwork, basic drills, and relaxed keiko — pick what fits your day.
-                  </p>
-                </div>
-                <div className="aukc-card p-6">
-                  <p className="font-display text-lg font-extrabold">What to bring</p>
-                  <p className="mt-2 text-sm leading-7 text-muted">
-                    For a visit: comfortable clothes are enough. If you have your gear, feel free to bring it.
-                  </p>
-                </div>
-                <div className="aukc-card p-6">
-                  <p className="font-display text-lg font-extrabold">Mini FAQ</p>
-                  <ul className="mt-2 space-y-1 text-sm text-muted">
-                    <li>Q: No experience? → A: Perfectly fine.</li>
-                    <li>Q: Only once a week? → A: Also fine.</li>
-                    <li>Q: Low stamina? → A: Let’s start there.</li>
-                  </ul>
-                </div>
-              </div>
-            </Reveal>
-          </section>
-
-          {/* Steps */}
-          <section className="mx-auto w-full max-w-6xl px-4">
-            <JoinSteps variant="chill" lang="en" />
-          </section>
-
-          {/* FAQ + Video (side-by-side on desktop) */}
-          <section className="mx-auto w-full max-w-6xl px-4 py-10">
-            <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
-              <div>
-                <Reveal>
-                  <h2 className="font-display text-2xl font-extrabold tracking-tight">
-                    Cozy video corner
-                  </h2>
-                  <p className="mt-2 max-w-prose text-muted">
-                    Tap a thumbnail to switch the embed.
-                  </p>
-                </Reveal>
-                <div className="mt-6">
-                  <Reveal delay={0.05}>
-                    <YouTubeGallery lang="en" />
-                  </Reveal>
-                </div>
-              </div>
-              <div>
-                <FaqAccordion variant="chill" lang="en" compact />
-              </div>
-            </div>
-          </section>
-
-          <section id="chill-visit" className="mx-auto w-full max-w-6xl px-4 py-12">
             <Reveal>
               <div className="aukc-card p-6 sm:p-10">
                 <h2 className="font-display text-2xl font-extrabold tracking-tight">
@@ -626,110 +140,63 @@ export default function HomeEn() {
                 <p className="mt-2 max-w-prose text-muted">
                   We keep it friendly and low-pressure. Come take a look first.
                 </p>
-                <div className="mt-6 grid gap-4 lg:grid-cols-2">
-                  <div id="chill-contact" className="aukc-card p-6">
-                    <p className="font-display text-lg font-extrabold">Social</p>
-                    <p className="mt-2 text-sm leading-7 text-muted">
-                      Questions and visit coordination are welcome via DMs on X/Instagram.
-                      Dropping in without messaging is okay, but since we sometimes take days off,
+
+                <div className="mt-6 space-y-4">
+                  <div className="aukc-card p-6">
+                    <p className="font-display text-lg font-extrabold">Quick route</p>
+                    <ol className="mt-3 space-y-2 text-sm text-muted">
+                      <li>1) DM us on X / Instagram (optional)</li>
+                      <li>2) Come around 19:00 (Mon/Thu) to Gym 2F</li>
+                      <li>3) Watch practice — if you like it, you’re in</li>
+                    </ol>
+                    <p className="mt-4 text-sm leading-7 text-muted">
+                      Dropping in without messaging is fine,
+                      <br />
+                      but since we sometimes take days off,
+                      <br />
                       a quick heads-up helps a lot.
                     </p>
-                    <p className="mt-4 text-xs font-bold text-foreground">
-                      Quick route: DM us → drop in
-                    </p>
-                    <div className="mt-2 grid grid-cols-2 gap-2">
+                  </div>
+
+                  <div id="chill-contact" className="aukc-card p-6">
+                    <p className="font-display text-lg font-extrabold">SNS (DM)</p>
+                    <div className="mt-3 flex w-full flex-col gap-2 md:flex-row">
                       <a
-                        className="inline-flex h-11 items-center justify-center rounded-xl border border-border bg-background px-3 text-sm font-semibold text-foreground shadow-sm shadow-shadow/10 transition hover:-translate-y-0.5 hover:bg-card hover:shadow-md focus:outline-none focus:ring-2 focus:ring-accent/35"
+                        className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl border border-border bg-background px-4 text-sm font-semibold text-foreground shadow-sm shadow-shadow/10 transition will-change-transform hover:-translate-y-0.5 hover:bg-card hover:shadow-md focus:outline-none focus:ring-2 focus:ring-accent/35 md:flex-1"
                         href="https://x.com/kendo_uoa"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        X
-                        <ArrowRight className="ml-2 size-4" aria-hidden="true" />
+                        <X className="size-4" aria-hidden="true" />
+                        Message on X
+                        <ArrowRight className="ml-1 size-4" aria-hidden="true" />
                       </a>
                       <a
-                        className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-border bg-background px-3 text-sm font-semibold text-foreground shadow-sm shadow-shadow/10 transition hover:-translate-y-0.5 hover:bg-card hover:shadow-md focus:outline-none focus:ring-2 focus:ring-accent/35"
+                        className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl border border-border bg-background px-4 text-sm font-semibold text-foreground shadow-sm shadow-shadow/10 transition will-change-transform hover:-translate-y-0.5 hover:bg-card hover:shadow-md focus:outline-none focus:ring-2 focus:ring-accent/35 md:flex-1"
                         href="https://www.instagram.com/uoa_kendo"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
                         <Instagram className="size-4" aria-hidden="true" />
-                        Instagram
+                        Message on Instagram
+                        <ArrowRight className="ml-1 size-4" aria-hidden="true" />
                       </a>
                     </div>
-
-                    <div className="mt-4 overflow-hidden rounded-2xl border border-border bg-background">
-                      <div className="p-3 text-xs text-muted">
-                        If the embed is blocked, please use the buttons above.
-                      </div>
-                      <div className="h-[420px] overflow-auto px-3 pb-3 sm:h-[540px]">
-                        <a
-                          className="twitter-timeline"
-                          data-height="520"
-                          data-dnt="true"
-                          href="https://x.com/kendo_uoa"
-                        >
-                          Tweets by kendo_uoa
-                        </a>
-                      </div>
-                    </div>
-
-                    <Script
-                      src="https://platform.twitter.com/widgets.js"
-                      strategy="lazyOnload"
-                    />
-                  </div>
-                  <div className="aukc-card p-6">
-                    <p className="font-display text-lg font-extrabold">Quick steps</p>
-                    <ol className="mt-3 space-y-2 text-sm text-muted">
-                      <li>1) DM us (X / Instagram)</li>
-                      <li>2) Come around 19:00 (Mon/Thu)</li>
-                      <li>3) Watch / join lightly — if you like it, you’re in</li>
-                    </ol>
-                    <p className="mt-4 text-xs text-muted">
-                      Dropping in without messaging is okay, but since we sometimes take days off,
-                      a quick heads-up helps a lot.
+                    <p className="mt-3 text-xs text-muted">
+                      Latest updates are available via the buttons above.
                     </p>
                   </div>
                 </div>
               </div>
             </Reveal>
-          </section>
-
-          <footer className="border-t border-border/70 bg-background">
-            <div className="mx-auto w-full max-w-6xl px-4 py-10">
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <p className="text-sm text-muted">
-                  © {new Date().getFullYear()} Aizu University Kendo Club
-                </p>
-                <a
-                  href="https://www.u-aizu.ac.jp/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-muted underline underline-offset-4 hover:text-foreground"
-                >
-                  University of Aizu (Official)
-                </a>
-              </div>
-            </div>
-          </footer>
-        </div>
+          </div>
+        </section>
       </main>
 
-      <footer className="mode-kendo mt-10 border-t border-border/70 bg-background">
-        <div className="mx-auto w-full max-w-6xl px-4 py-8">
-          <div className="mb-4">
-            <ActivityNotice
-              title="Schedule (quick)"
-              schedule={ACTIVITY_EN.schedule}
-              place={ACTIVITY_EN.place}
-              withXLink={false}
-            />
-          </div>
+      <footer className="border-t border-border/70 bg-background">
+        <div className="mx-auto w-full max-w-6xl px-4 py-10">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-sm text-muted">
-              © {new Date().getFullYear()} Aizu University Kendo Club
-            </p>
+            <p className="text-sm text-muted">© {new Date().getFullYear()} Aizu University Kendo Club</p>
             <a
               href="https://www.u-aizu.ac.jp/"
               target="_blank"
