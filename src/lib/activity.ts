@@ -1,7 +1,7 @@
 export const ACTIVITY_JA = {
   schedule: "毎週 月・木曜 19:00〜21:00",
-  place: "体育館2F 武道場にて活動中！",
-  combined: "毎週 月・木曜 19:00〜21:00  体育館2F 武道場にて活動中！",
+  place: "体育館2F 武道場にて武道場でぽよぽよん！",
+  combined: "毎週の 月ぽよ・木ぽよ おねむのあと、よる19:00〜21:00  体育館2F 武道場でぽよぽよん！",
 } as const;
 
 export const ACTIVITY_EN = {

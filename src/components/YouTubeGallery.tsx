@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useSyncExternalStore } from "react";
 import { Play } from "lucide-react";
+import { getToneSnapshot, subscribeTone, type Tone } from "@/lib/tone";
 
 type VideoItem = {
   id: string; // YouTube video id
@@ -16,19 +17,28 @@ type YouTubeCopy = {
   footerHint: string;
 };
 
-const COPY_JA: YouTubeCopy = {
-  description: "稽古の空気感・間合い・打突の迫力を、映像で体感してください。",
-  thumbAltSuffix: "のサムネイル",
-  switchHint: "",
-  footerHint: "",
-};
+function copy(lang: "ja" | "en", tone: Tone): YouTubeCopy {
+  const isPoyo = tone === "poyo";
+  if (lang === "en") {
+    return {
+      description: isPoyo
+        ? "Feel the air… the timing… the tiny *bonk*. Very poyo."
+        : "Feel the intensity, maai (distance), and the atmosphere through video.",
+      thumbAltSuffix: "thumbnail",
+      switchHint: "",
+      footerHint: "",
+    };
+  }
 
-const COPY_EN: YouTubeCopy = {
-  description: "Feel the intensity, maai (distance), and the atmosphere through video.",
-  thumbAltSuffix: "thumbnail",
-  switchHint: "",
-  footerHint: "*You can change YouTube IDs in `src/components/YouTubeGallery.tsx`.",
-};
+  return {
+    description: isPoyo
+      ? "稽古の空気感・間合い・打突の迫力を、ぽよっと映像で体感してぽよ。"
+      : "稽古の空気感・間合い・打突の迫力を、映像で体感してください。",
+    thumbAltSuffix: "のサムネイル",
+    switchHint: "",
+    footerHint: "",
+  };
+}
 
 const DEFAULT_VIDEOS: VideoItem[] = [
   // id には YouTube の「動画ID」（watch?v= の後ろ）を入れてください
@@ -44,7 +54,9 @@ export function YouTubeGallery({
   videos?: VideoItem[];
   lang?: "ja" | "en";
 }) {
-  const copy = lang === "en" ? COPY_EN : COPY_JA;
+  // Subscribe so poyo toggle live-updates the copy.
+  const tone = useSyncExternalStore<Tone>(subscribeTone, getToneSnapshot, () => "normal");
+  const copyText = copy(lang, tone);
   const [active, setActive] = useState(videos[0]?.id ?? DEFAULT_VIDEOS[0].id);
   const activeItem = useMemo(
     () => videos.find((v) => v.id === active) ?? videos[0],
@@ -80,7 +92,7 @@ export function YouTubeGallery({
               {activeItem.label}
             </p>
             <p className="mt-1 text-sm text-muted">
-              {copy.description}
+              {copyText.description}
             </p>
           </div>
         </div>
@@ -107,7 +119,7 @@ export function YouTubeGallery({
                 {/* Use <img> to avoid configuring next/image remote patterns for thumbnails */}
                 <img
                   src={thumb}
-                  alt={`${v.label} ${copy.thumbAltSuffix}`}
+                  alt={`${v.label} ${copyText.thumbAltSuffix}`}
                   width={240}
                   height={135}
                   loading="lazy"
@@ -124,14 +136,14 @@ export function YouTubeGallery({
                   {v.label}
                 </p>
                 <p className="mt-1 line-clamp-2 text-xs text-muted">
-                  {copy.switchHint}
+                  {copyText.switchHint}
                 </p>
               </div>
             </button>
           );
         })}
         <p className="text-xs text-muted">
-          {copy.footerHint}
+          {copyText.footerHint}
         </p>
       </div>
     </div>
