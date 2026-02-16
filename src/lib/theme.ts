@@ -1,9 +1,9 @@
-export type ThemeMode = "stylish" | "kendo";
+export type ThemeMode = "kendo" | "chill";
 
 export const THEME_STORAGE_KEY = "aukc-theme";
 
 export function normalizeTheme(value: unknown): ThemeMode {
-  return value === "kendo" || value === "stylish" ? value : "stylish";
+  return value === "kendo" || value === "chill" ? value : "kendo";
 }
 
 export function applyThemeToDocument(theme: ThemeMode) {
@@ -20,11 +20,11 @@ export function setStoredTheme(theme: ThemeMode) {
 }
 
 export function getStoredTheme(): ThemeMode {
-  if (typeof window === "undefined") return "stylish";
+  if (typeof window === "undefined") return "kendo";
   try {
     return normalizeTheme(localStorage.getItem(THEME_STORAGE_KEY));
   } catch {
-    return "stylish";
+    return "kendo";
   }
 }
 

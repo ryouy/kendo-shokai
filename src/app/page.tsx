@@ -1,10 +1,14 @@
 import Image from "next/image";
 import Script from "next/script";
 import { ArrowRight, CalendarDays, MapPin, Trophy, Users } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { LanguageToggle } from "@/components/LanguageToggle";
+import { MobileNav } from "@/components/MobileNav";
 import { Reveal } from "@/components/Reveal";
 import { ContactForm } from "@/components/ContactForm";
 import { YouTubeGallery } from "@/components/YouTubeGallery";
+import { ActivityNotice } from "@/components/ActivityNotice";
+import { ACTIVITY_JA } from "@/lib/activity";
 
 export default function Home() {
   const gallery = [
@@ -17,10 +21,10 @@ export default function Home() {
   ] as const;
 
   const members = [
-    { name: "佐藤 海斗", role: "主将", note: "「一本の重みを、毎日積み上げる。」" },
-    { name: "鈴木 菜々", role: "副将", note: "「初心者歓迎。基本から一緒に。」" },
-    { name: "高橋 悠真", role: "主務", note: "「文武両道、支える側も強く。」" },
-    { name: "伊藤 玲奈", role: "会計", note: "「切り返しで心も整う。」" },
+    { name: "佐藤 海斗", role: "主将", note: "「楽しく、真剣に。みんなで上達しましょう！」" },
+    { name: "鈴木 菜々", role: "副将", note: "「初心者歓迎！基礎からゆっくりやります。」" },
+    { name: "高橋 悠真", role: "主務", note: "「マイペースOK。気軽に見学に来てください。」" },
+    { name: "伊藤 玲奈", role: "会計", note: "「運動不足解消にもぴったりです。」" },
   ] as const;
 
   return (
@@ -32,10 +36,14 @@ export default function Home() {
         メインコンテンツへスキップ
       </a>
 
-      <header className="sticky top-0 z-40 border-b border-border/70 bg-background/70 backdrop-blur">
+      {/* Header (Kendo/Bushido) */}
+      <header className="mode-kendo sticky top-0 z-40 border-b border-border/70 bg-background/70 backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-3">
           <div className="flex min-w-0 items-baseline gap-3">
-            <a href="#" className="font-display text-base font-semibold whitespace-nowrap">
+            <a
+              href="#"
+              className="min-w-0 max-w-[52vw] truncate font-display text-base font-semibold"
+            >
               会津大学剣道部
             </a>
             <span className="hidden whitespace-nowrap text-xs text-muted sm:inline">
@@ -60,12 +68,52 @@ export default function Home() {
             </a>
           </nav>
           <div className="flex items-center gap-3">
+            <a href="#contact" className="hidden md:inline-flex aukc-btn aukc-btn-primary">
+              見学・入部案内
+              <ArrowRight className="ml-2 size-4" aria-hidden="true" />
+            </a>
+            <MobileNav
+              title="会津大学剣道部"
+              items={[
+                { href: "#youtube", label: "動画" },
+                { href: "#about", label: "About" },
+                { href: "#activities", label: "活動内容" },
+                { href: "#members", label: "部員紹介" },
+                { href: "#contact", label: "SNS & Contact" },
+              ]}
+            />
             <LanguageToggle />
+            <ThemeToggle />
+          </div>
+        </div>
+      </header>
+
+      {/* Header (Chill) */}
+      <header className="mode-chill sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur">
+        <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3 px-4 py-3">
+          <div className="flex min-w-0 items-center gap-2">
+            <span className="grid size-9 place-items-center rounded-2xl bg-accent/10 text-accent">
+              ゆ
+            </span>
+            <a href="#" className="min-w-0 truncate font-display text-base font-bold">
+              ゆるゆる剣道部（会津大学）
+            </a>
+          </div>
+          <div className="flex items-center gap-2">
+            <a href="#chill-visit" className="aukc-btn aukc-btn-soft">
+              ふらっと見学
+              <ArrowRight className="ml-1 size-4" aria-hidden="true" />
+            </a>
+            <ThemeToggle />
           </div>
         </div>
       </header>
 
       <main id="main">
+        {/* ========================= */}
+        {/* Kendo/Bushido composition */}
+        {/* ========================= */}
+        <div className="mode-kendo">
         {/* Hero (Video background on desktop, static poster on mobile) */}
         <section className="relative isolate overflow-hidden border-b border-border/70">
           <div className="absolute inset-0 -z-10">
@@ -100,10 +148,15 @@ export default function Home() {
 
           <div className="mx-auto w-full max-w-6xl px-4 py-16 md:py-24">
             <Reveal>
-              <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/30 px-3 py-1 text-xs font-medium text-white/80 backdrop-blur">
-                <span className="size-1.5 rounded-full bg-accent" />
-                新入部員募集中｜初心者・経験者歓迎
-              </p>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/30 px-3 py-1 text-xs font-semibold text-white/90 backdrop-blur">
+                  <span className="size-1.5 rounded-full bg-accent" />
+                  見学受付中
+                </span>
+                <span className="inline-flex items-center rounded-full border border-white/15 bg-black/30 px-3 py-1 text-xs font-medium text-white/75 backdrop-blur">
+                  初心者歓迎・マイペースOK
+                </span>
+              </div>
               <h1 className="mt-5 font-display text-4xl font-semibold tracking-tight text-white sm:text-6xl">
                 会津大学剣道部
               </h1>
@@ -111,40 +164,45 @@ export default function Home() {
                 Aizu University Kendo Club
               </p>
               <p className="mt-5 max-w-2xl text-base leading-8 text-white/85 sm:text-lg">
-                「剣に生きる、技に磨きを。」<br />
-                「一打に魂を込めて。」
+                楽しく、真剣に。<br />
+                はじめてでも大丈夫。自分のペースで剣道を学べます。
               </p>
 
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <a
+                  href="#contact"
+                  className="aukc-btn aukc-btn-primary"
+                >
+                  入部案内 / 見学申し込み
+                  <ArrowRight className="ml-2 size-4" aria-hidden="true" />
+                </a>
+                <a
                   href="#youtube"
-                  className="inline-flex h-12 items-center justify-center rounded-xl border border-white/20 bg-zinc-900/65 px-6 text-sm font-semibold text-white/90 backdrop-blur transition hover:bg-zinc-900/80 focus:outline-none focus:ring-2 focus:ring-white/35"
+                  className="aukc-btn aukc-btn-soft"
                 >
                   動画を見る（稽古・大会）
                   <ArrowRight className="ml-2 size-4" aria-hidden="true" />
                 </a>
+                <a
+                  href="https://x.com/kendo_uoa"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="aukc-btn aukc-btn-ghost"
+                >
+                  X（旧Twitter）
+                  <ArrowRight className="ml-2 size-4" aria-hidden="true" />
+                </a>
               </div>
 
-              <dl className="mt-10 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4">
-                <div className="rounded-2xl border border-white/15 bg-black/25 p-4 text-white backdrop-blur">
-                  <dt className="text-xs text-white/70">稽古</dt>
-                  <dd className="mt-1 text-sm font-semibold">
-                    週3回（例）平日夕方
-                  </dd>
-                </div>
-                <div className="rounded-2xl border border-white/15 bg-black/25 p-4 text-white backdrop-blur">
-                  <dt className="text-xs text-white/70">場所</dt>
-                  <dd className="mt-1 text-sm font-semibold">学内 道場（例）</dd>
-                </div>
-                <div className="rounded-2xl border border-white/15 bg-black/25 p-4 text-white backdrop-blur">
-                  <dt className="text-xs text-white/70">目的</dt>
-                  <dd className="mt-1 text-sm font-semibold">活動紹介・募集</dd>
-                </div>
-                <div className="rounded-2xl border border-white/15 bg-black/25 p-4 text-white backdrop-blur">
-                  <dt className="text-xs text-white/70">雰囲気</dt>
-                  <dd className="mt-1 text-sm font-semibold">迫力 × 礼節</dd>
-                </div>
-              </dl>
+              <div className="mt-10 max-w-3xl">
+                <ActivityNotice
+                  variant="hero"
+                  title="活動日時・場所"
+                  schedule={ACTIVITY_JA.schedule}
+                  place={ACTIVITY_JA.place}
+                  withXLink={false}
+                />
+              </div>
 
               <p className="mt-6 text-xs text-white/60">
                 ※モバイルは軽量化のため静止画表示になります。PC/タブレットは動画ループ再生。
@@ -180,7 +238,7 @@ export default function Home() {
                   About 剣道部
                 </h2>
                 <p className="mt-2 max-w-prose text-muted">
-                  会津大学剣道部の理念・歴史・特徴を、端的に紹介します。
+                  楽しく続けられる雰囲気を大切にしつつ、基本もしっかり。初心者も経験者も歓迎です。
                 </p>
               </div>
             </div>
@@ -191,8 +249,8 @@ export default function Home() {
               <div className="h-full rounded-2xl border border-border bg-card p-6 shadow-sm shadow-shadow/10">
                 <p className="font-display text-lg font-semibold">活動理念</p>
                 <p className="mt-2 text-sm leading-7 text-muted">
-                  礼節を大切にし、基本に忠実な稽古を積み重ねることで、学業・研究にも通じる
-                  「やり切る力」を育てます。
+                  「楽しい稽古を目指しています！」運動不足解消でもOK。無理なく続けながら、
+                  剣道の基本と礼儀も自然に身につけます。
                 </p>
               </div>
             </Reveal>
@@ -200,8 +258,8 @@ export default function Home() {
               <div className="h-full rounded-2xl border border-border bg-card p-6 shadow-sm shadow-shadow/10">
                 <p className="font-display text-lg font-semibold">歴史・特徴</p>
                 <p className="mt-2 text-sm leading-7 text-muted">
-                  少人数でも密度の高い稽古。経験者はもちろん、初心者も基礎から丁寧に。大会・交流戦・
-                  合宿を通して、仲間と共に成長します。
+                  初心者や、マイペースに運動したいという方も大歓迎です。経験の有無は問いません。
+                  まずは気軽に見学へ！
                 </p>
               </div>
             </Reveal>
@@ -209,7 +267,7 @@ export default function Home() {
               <div className="h-full rounded-2xl border border-border bg-card p-6 shadow-sm shadow-shadow/10">
                 <p className="font-display text-lg font-semibold">モットー</p>
                 <p className="mt-2 text-sm leading-7 text-muted">
-                  「正しく、強く、礼を尽くす」——日々の稽古を通じて、一本の価値と向き合います。
+                  「楽しく、真剣に。」——それぞれのペースで、少しずつ上達していきます。
                 </p>
               </div>
             </Reveal>
@@ -223,9 +281,18 @@ export default function Home() {
               活動内容
             </h2>
             <p className="mt-2 max-w-prose text-muted">
-              稽古日程・場所、大会や合宿、交流戦などの活動を紹介します（例）。
+              活動日時・場所は以下で統一しています。見学もお気軽にどうぞ。
             </p>
           </Reveal>
+
+          <div className="mt-6">
+            <Reveal delay={0.05}>
+              <ActivityNotice
+                schedule={ACTIVITY_JA.schedule}
+                place={ACTIVITY_JA.place}
+              />
+            </Reveal>
+          </div>
 
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             <Reveal delay={0.05}>
@@ -235,9 +302,9 @@ export default function Home() {
                   <p className="font-display text-lg font-semibold">稽古日程</p>
                 </div>
                 <ul className="mt-3 space-y-2 text-sm text-muted">
-                  <li>週3回（例）：月・水・金 18:00–20:00</li>
-                  <li>基礎（素振り・切り返し）→ 地稽古 → 研究稽古</li>
-                  <li>初心者は基礎メニューを重点的に</li>
+                  <li>{ACTIVITY_JA.schedule}</li>
+                  <li>楽しく稽古しつつ、基本もしっかり</li>
+                  <li>初心者は基礎メニューから丁寧に</li>
                 </ul>
               </div>
             </Reveal>
@@ -248,9 +315,9 @@ export default function Home() {
                   <p className="font-display text-lg font-semibold">場所</p>
                 </div>
                 <ul className="mt-3 space-y-2 text-sm text-muted">
-                  <li>会津大学 学内 道場（例）</li>
-                  <li>更衣・防具置き場あり（状況により）</li>
-                  <li>見学はいつでも歓迎（事前連絡推奨）</li>
+                  <li>{ACTIVITY_JA.place}</li>
+                  <li>動きやすい服装で見学OK</li>
+                  <li>事前連絡があるとスムーズです</li>
                 </ul>
               </div>
             </Reveal>
@@ -374,7 +441,7 @@ export default function Home() {
                   <div className="p-3 text-xs text-muted">
                     埋め込みがブロックされる環境では、上のボタンからご覧ください。
                   </div>
-                  <div className="h-[540px] overflow-auto px-3 pb-3">
+                  <div className="h-[420px] overflow-auto px-3 pb-3 sm:h-[540px]">
                     <a
                       className="twitter-timeline"
                       data-height="520"
@@ -399,10 +466,170 @@ export default function Home() {
           </div>
           </section>
         </div>
+        </div>
+
+        {/* ========================= */}
+        {/* Chill composition (new)    */}
+        {/* ========================= */}
+        <div className="mode-chill">
+          <section className="mx-auto w-full max-w-6xl px-4 py-10 sm:py-14">
+            <Reveal>
+              <div className="aukc-card p-6 sm:p-10">
+                <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+                  <div className="max-w-2xl">
+                    <p className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs font-bold text-muted">
+                      のんびり運動 / 友だち作り / 初心者歓迎
+                    </p>
+                    <h1 className="mt-4 font-display text-3xl font-extrabold tracking-tight sm:text-5xl">
+                      ゆるっと剣道、はじめよ。
+                    </h1>
+                    <p className="mt-3 text-sm leading-7 text-muted sm:text-base">
+                      「運動不足だからちょっと動きたい」でもOK。道着がなくてもOK。
+                      まずは見学で雰囲気だけ感じに来てください。
+                    </p>
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      <span className="aukc-pill border border-border bg-background px-3 py-1 text-xs font-semibold text-foreground">
+                        マイペースOK
+                      </span>
+                      <span className="aukc-pill border border-border bg-background px-3 py-1 text-xs font-semibold text-foreground">
+                        初心者OK
+                      </span>
+                      <span className="aukc-pill border border-border bg-background px-3 py-1 text-xs font-semibold text-foreground">
+                        途中参加OK
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex shrink-0 flex-col gap-3">
+                    <a href="#chill-visit" className="aukc-btn aukc-btn-primary">
+                      見学する（受付中）
+                      <ArrowRight className="ml-1 size-4" aria-hidden="true" />
+                    </a>
+                    <a href="https://x.com/kendo_uoa" target="_blank" rel="noopener noreferrer" className="aukc-btn aukc-btn-ghost">
+                      Xでゆるっと近況
+                      <ArrowRight className="ml-1 size-4" aria-hidden="true" />
+                    </a>
+                  </div>
+                </div>
+
+                <div className="mt-6">
+                  <ActivityNotice
+                    title="活動日時・場所"
+                    schedule={ACTIVITY_JA.schedule}
+                    place={ACTIVITY_JA.place}
+                    withXLink={false}
+                  />
+                </div>
+              </div>
+            </Reveal>
+          </section>
+
+          <section className="mx-auto w-full max-w-6xl px-4 pb-10">
+            <Reveal>
+              <div className="grid gap-4 md:grid-cols-3">
+                <div className="aukc-card p-6">
+                  <p className="font-display text-lg font-extrabold">ゆるメニュー</p>
+                  <p className="mt-2 text-sm leading-7 text-muted">
+                    その日の気分と体力に合わせて。素振り・足さばき・軽い打ち込み・のんびり地稽古など。
+                  </p>
+                </div>
+                <div className="aukc-card p-6">
+                  <p className="font-display text-lg font-extrabold">持ち物</p>
+                  <p className="mt-2 text-sm leading-7 text-muted">
+                    見学だけなら動きやすい服でOK。経験者で防具がある方は持ってきても大丈夫です。
+                  </p>
+                </div>
+                <div className="aukc-card p-6">
+                  <p className="font-display text-lg font-extrabold">よくあるやつ</p>
+                  <ul className="mt-2 space-y-1 text-sm text-muted">
+                    <li>Q: 未経験でも？ → A: もちろん！</li>
+                    <li>Q: 週1しか無理… → A: 全然OK！</li>
+                    <li>Q: 体力に自信ない… → A: そこから！</li>
+                  </ul>
+                </div>
+              </div>
+            </Reveal>
+          </section>
+
+          <section className="mx-auto w-full max-w-6xl px-4 py-10">
+            <Reveal>
+              <h2 className="font-display text-2xl font-extrabold tracking-tight">
+                のんびり動画コーナー
+              </h2>
+              <p className="mt-2 max-w-prose text-muted">
+                見るだけでも雰囲気がわかります（サムネを押すと切り替わります）。
+              </p>
+            </Reveal>
+            <div className="mt-6">
+              <Reveal delay={0.05}>
+                <YouTubeGallery lang="ja" />
+              </Reveal>
+            </div>
+          </section>
+
+          <section id="chill-visit" className="mx-auto w-full max-w-6xl px-4 py-12">
+            <Reveal>
+              <div className="aukc-card p-6 sm:p-10">
+                <h2 className="font-display text-2xl font-extrabold tracking-tight">
+                  ふらっと見学、歓迎です
+                </h2>
+                <p className="mt-2 max-w-prose text-muted">
+                  ガチガチの体育会系じゃなく、楽しく続ける感じでやってます。気軽にどうぞ。
+                </p>
+                <div className="mt-6 grid gap-4 lg:grid-cols-2">
+                  <ContactForm lang="ja" />
+                  <div className="aukc-card p-6">
+                    <p className="font-display text-lg font-extrabold">最短ルート</p>
+                    <ol className="mt-3 space-y-2 text-sm text-muted">
+                      <li>1) 上のフォーム or Xから連絡</li>
+                      <li>2) 月/木の19:00ごろに体育館2Fへ</li>
+                      <li>3) 見学して、気に入ったらそのままOK</li>
+                    </ol>
+                    <a className="mt-5 inline-flex aukc-btn aukc-btn-soft" href="https://x.com/kendo_uoa" target="_blank" rel="noopener noreferrer">
+                      Xを開く
+                      <ArrowRight className="ml-1 size-4" aria-hidden="true" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          </section>
+
+          <footer className="border-t border-border/70 bg-background">
+            <div className="mx-auto w-full max-w-6xl px-4 py-10">
+              <div className="aukc-card p-5">
+                <p className="text-sm font-bold text-foreground">今週の活動</p>
+                <p className="mt-1 text-sm text-muted">{ACTIVITY_JA.combined}</p>
+              </div>
+              <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <p className="text-sm text-muted">
+                  © {new Date().getFullYear()} Aizu University Kendo Club
+                </p>
+                <a
+                  href="https://www.u-aizu.ac.jp/"
+            target="_blank"
+            rel="noopener noreferrer"
+                  className="text-sm text-muted underline underline-offset-4 hover:text-foreground"
+                >
+                  会津大学 公式サイト
+                </a>
+              </div>
+            </div>
+          </footer>
+        </div>
       </main>
 
-      <footer className="mt-10 border-t border-border/70 bg-background">
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-4 py-8 sm:flex-row sm:items-center sm:justify-between">
+      <footer className="mode-kendo mt-10 border-t border-border/70 bg-background">
+        <div className="mx-auto w-full max-w-6xl px-4 py-8">
+          <div className="mb-4">
+            <ActivityNotice
+              title="活動日時・場所（簡易）"
+              schedule={ACTIVITY_JA.schedule}
+              place={ACTIVITY_JA.place}
+              withXLink={false}
+            />
+          </div>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-muted">
             © {new Date().getFullYear()} Aizu University Kendo Club
           </p>
@@ -414,6 +641,7 @@ export default function Home() {
           >
             会津大学 公式サイト
           </a>
+          </div>
         </div>
       </footer>
     </div>

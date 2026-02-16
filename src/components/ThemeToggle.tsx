@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useMemo, useState } from "react";
-import { MoonStar, Sparkles, Sword } from "lucide-react";
+import { Coffee, MoonStar, Sword } from "lucide-react";
 import {
   applyThemeToDocument,
   getStoredTheme,
@@ -10,12 +10,12 @@ import {
 } from "@/lib/theme";
 
 function nextTheme(current: ThemeMode): ThemeMode {
-  return current === "stylish" ? "kendo" : "stylish";
+  return current === "kendo" ? "chill" : "kendo";
 }
 
 export function ThemeToggle() {
   const reactId = useId();
-  const [theme, setTheme] = useState<ThemeMode>("stylish");
+  const [theme, setTheme] = useState<ThemeMode>("kendo");
 
   useEffect(() => {
     const t = getStoredTheme();
@@ -24,14 +24,15 @@ export function ThemeToggle() {
   }, []);
 
   const label = useMemo(
-    () => (theme === "stylish" ? "Modern モード" : "Bushido モード"),
+    () =>
+      theme === "kendo" ? "武士道モード" : "ゆるゆるモード",
     [theme],
   );
 
   return (
     <div className="flex items-center gap-2">
       <span className="sr-only" id={`${reactId}-label`}>
-        表示モード切替（Modern / Bushido）
+        表示モード切替（武士道 / ゆるゆる）
       </span>
       <button
         type="button"
@@ -47,15 +48,15 @@ export function ThemeToggle() {
       >
         <span className="inline-flex items-center gap-2">
           <span className="grid size-7 place-items-center rounded-full bg-background">
-            {theme === "stylish" ? (
-              <Sparkles className="size-4 text-accent" aria-hidden="true" />
-            ) : (
+            {theme === "kendo" ? (
               <Sword className="size-4 text-accent-2" aria-hidden="true" />
+            ) : (
+              <Coffee className="size-4 text-accent" aria-hidden="true" />
             )}
           </span>
           <span className="hidden sm:inline">{label}</span>
           <span className="sm:hidden">
-            {theme === "stylish" ? "Modern" : "Bushido"}
+            {theme === "kendo" ? "武士道" : "ゆる"}
           </span>
         </span>
         <span className="ml-1 inline-flex items-center opacity-70">

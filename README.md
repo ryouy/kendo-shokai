@@ -2,8 +2,8 @@
 
 会津大学剣道部の活動紹介・部員募集・SNS導線のための 1 ページ Web サイトです。
 
-- **Modern モード**: スタイリッシュ（ライト寄り、Framer Motion）
-- **Bushido モード**: 黒/紺/白基調＋滲みテクスチャ＋筆文字フォント（武道らしい雰囲気）
+- **武士道モード**: 黒/紺/白基調＋滲みテクスチャ＋筆文字フォント（武道らしい雰囲気）
+- **ゆるゆるモード**: パステル＋丸文字＋ふわっとした影＋のんびり構成（別サイト級に変化）
 
 右上のトグルで切り替えできます（`localStorage` に保存）。
 
@@ -24,18 +24,20 @@ src/
   app/
     layout.tsx        # meta / theme init
     page.tsx          # 1ページ本体（Hero動画/YouTube/各セクション）
-    globals.css       # テーマ変数（Modern/Bushido）
+    globals.css       # テーマ変数（武士道/ゆるゆる）
   components/
     ThemeToggle.tsx   # モード切替
     YouTubeGallery.tsx# YouTube埋め込み切替（サムネ→iframe）
     ContactForm.tsx   # 見学/問い合わせ（mailto）
 public/
+  favi.png            # favicon（追加してください）
   hero/
     hero-mobile.svg   # モバイル静止画（ポスター）
     keiko.mp4         # Hero背景動画（差し替え対象）
   gallery/            # 写真ギャラリー（いまはSVGプレースホルダー）
   textures/
-    sumi-noise.svg    # Bushido背景テクスチャ
+    sumi-noise.svg    # 武士道背景テクスチャ
+    chill-doodles.svg # ゆるゆる背景テクスチャ
 ```
 
 ## 主な編集ポイント
@@ -46,6 +48,7 @@ public/
 - **テーマ（色/フォント/テクスチャ）**: `src/app/globals.css`
 - **モード切替UI**: `src/components/ThemeToggle.tsx`
 - **言語切替UI**: `src/components/LanguageToggle.tsx`
+- **活動日時・場所（共通定義）**: `src/lib/activity.ts`
 - **YouTubeセクション**: `src/components/YouTubeGallery.tsx`
 - **問い合わせフォーム**: `src/components/ContactForm.tsx`
 - **画像（SVGプレースホルダー）**:
@@ -57,6 +60,11 @@ public/
 
 - **ギャラリー**: `public/gallery/*.svg` を実写真に差し替え可能（`next/image` で最適化）。
 - **連絡先メール**: `src/components/ContactForm.tsx` 内の `DEFAULT_TO` を実際の宛先に変更してください。
+
+## ファビコン（favicon）
+
+- `public/favi.png` を配置してください。
+- `src/app/layout.tsx` で `<link rel="icon" ...>` と `apple-touch-icon` を設定済みです。
 
 ## Hero動画の差し替え方法
 

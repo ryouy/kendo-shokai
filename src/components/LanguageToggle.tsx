@@ -50,9 +50,12 @@ export function LanguageToggle() {
         const target = next === "en" ? "/en" : "/";
         router.push(`${target}${hash}`);
       }}
-      className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-zinc-900/70 px-3 py-2 text-sm font-medium text-zinc-100 shadow-sm shadow-black/30 backdrop-blur transition hover:-translate-y-0.5 hover:bg-zinc-900/85 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-white/35"
+      className="group inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-2 text-sm font-medium text-foreground shadow-sm shadow-shadow/10 transition hover:-translate-y-0.5 hover:bg-background hover:shadow-md hover:shadow-shadow/15 focus:outline-none focus:ring-2 focus:ring-accent/40"
     >
-      <Globe className="size-4 text-zinc-300 group-hover:text-zinc-100" aria-hidden="true" />
+      <Globe
+        className="size-4 text-muted group-hover:text-foreground"
+        aria-hidden="true"
+      />
       <span className="hidden sm:inline">{label}</span>
       <span className="sm:hidden">{lang === "ja" ? "EN" : "JA"}</span>
       <span className="sr-only" id={`${id}-hint`}>

@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Yuji_Syuku } from "next/font/google";
+import { Inter, M_PLUS_Rounded_1c, Yuji_Syuku } from "next/font/google";
 import "./globals.css";
 
 import Script from "next/script";
+
+const isGitHubPages =
+  process.env.GITHUB_PAGES === "true" || process.env.GITHUB_ACTIONS === "true";
+const basePath = isGitHubPages ? "/kendo-shokai" : "";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -17,10 +21,21 @@ const yuji = Yuji_Syuku({
   display: "swap",
 });
 
+const rounded = M_PLUS_Rounded_1c({
+  variable: "--font-rounded",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "会津大学剣道部",
+  title: "会津大学剣道部 - Aizu University Kendo Club",
   description:
     "会津大学の剣道部公式紹介ページ。活動内容・部員紹介・SNSリンクなど。",
+  icons: {
+    icon: "/favi.png",
+    apple: "/favi.png",
+  },
   openGraph: {
     title: "会津大学剣道部 - Aizu University Kendo Club",
     description:
@@ -42,6 +57,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" data-theme="kendo" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href={`${basePath}/favi.png`} type="image/png" />
+        <link rel="apple-touch-icon" href={`${basePath}/favi.png`} />
+      </head>
+      <Script id="theme-init" strategy="beforeInteractive">
+        {`
+(() => {
+  try {
+    const key = "aukc-theme";
+    const stored = localStorage.getItem(key);
+    const theme = stored === "kendo" || stored === "chill" ? stored : "kendo";
+    document.documentElement.dataset.theme = theme;
+  } catch (_) {
+    document.documentElement.dataset.theme = "kendo";
+  }
+})();
+        `.trim()}
+      </Script>
       <Script id="lang-init" strategy="beforeInteractive">
         {`
 (() => {
@@ -61,7 +94,7 @@ export default function RootLayout({
 })();
         `.trim()}
       </Script>
-      <body className={`${inter.variable} ${yuji.variable} antialiased`}>
+      <body className={`${inter.variable} ${yuji.variable} ${rounded.variable} antialiased`}>
         {children}
       </body>
     </html>
