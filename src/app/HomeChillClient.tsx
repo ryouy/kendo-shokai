@@ -9,7 +9,12 @@ import { JoinSteps } from "@/components/JoinSteps";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { YouTubeGallery } from "@/components/YouTubeGallery";
 import { ActivityNotice } from "@/components/ActivityNotice";
-import { ACTIVITY_JA, ACTIVITY_EN } from "@/lib/activity";
+import {
+  ACTIVITY_EN_NORMAL,
+  ACTIVITY_EN_POYO,
+  ACTIVITY_JA_NORMAL,
+  ACTIVITY_JA_POYO,
+} from "@/lib/activity";
 import { getToneSnapshot, subscribeTone, type Tone } from "@/lib/tone";
 
 type Lang = "ja" | "en";
@@ -92,7 +97,14 @@ function copy(lang: Lang, tone: Tone) {
 export function HomeChillClient({ lang }: { lang: Lang }) {
   const tone = useSyncExternalStore<Tone>(subscribeTone, getToneSnapshot, () => "normal");
   const c = copy(lang, tone);
-  const activity = lang === "en" ? ACTIVITY_EN : ACTIVITY_JA;
+  const activity =
+    lang === "en"
+      ? tone === "poyo"
+        ? ACTIVITY_EN_POYO
+        : ACTIVITY_EN_NORMAL
+      : tone === "poyo"
+        ? ACTIVITY_JA_POYO
+        : ACTIVITY_JA_NORMAL;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
