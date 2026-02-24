@@ -2,6 +2,7 @@
 
 import { useSyncExternalStore } from "react";
 import { ArrowRight, Instagram, X } from "lucide-react";
+import Link from "next/link";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { ToneToggle } from "@/components/ToneToggle";
 import { Reveal } from "@/components/Reveal";
@@ -117,12 +118,12 @@ export function HomeChillClient({ lang }: { lang: Lang }) {
 
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3 px-4 py-3">
-          <a
+          <Link
             href={lang === "en" ? "/en" : "/"}
             className="min-w-0 truncate font-display text-xl font-extrabold sm:text-2xl"
           >
             {c.headerTitle}
-          </a>
+          </Link>
           <div className="flex shrink-0 items-center gap-2">
             <a href="#chill-visit" className="aukc-btn aukc-btn-soft">
               {c.headerCta}
