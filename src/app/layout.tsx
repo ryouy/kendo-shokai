@@ -38,8 +38,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const textureUrl = `${basePath}/textures/chill-doodles.svg`;
   return (
-    <html lang="ja" data-theme="chill" suppressHydrationWarning>
+    <html
+      lang="ja"
+      data-theme="chill"
+      suppressHydrationWarning
+      style={{ ["--texture-url" as any]: `url("${textureUrl}")` }}
+    >
       <head>
         <link rel="icon" href={`${basePath}/favi.png`} type="image/png" />
         <link rel="apple-touch-icon" href={`${basePath}/favi.png`} />

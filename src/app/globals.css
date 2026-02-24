@@ -20,7 +20,8 @@
   --shadow-float: 0 18px 44px rgba(31, 41, 55, 0.12);
 
   /* Texture overlay */
-  --texture: url("/textures/chill-doodles.svg");
+  /* Set by layout.tsx so it works with GitHub Pages basePath */
+  --texture: var(--texture-url, url("/textures/chill-doodles.svg"));
   --texture-opacity: 0.16;
   --texture-blend: multiply;
 
